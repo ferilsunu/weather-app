@@ -1,0 +1,149 @@
+body{
+    max-width: 650px;
+    margin: 0 auto;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+  
+}
+header{
+    text-align: center; 
+}
+header a{
+font-family: poppins;
+color: dimgrey;
+text-decoration: none;
+margin-right: 9px;
+font-size: 16px; 
+  
+}
+
+.main{
+    flex-grow: 1;
+    text-align: center;
+}
+
+h1{
+    color: #333333;
+    font-family: 'poppins' ;
+}
+
+p{
+    font-family: poppins;
+
+}
+
+img{
+    width: 250px;
+    padding-top: 10px;
+ 
+}
+
+
+footer{
+    font-family: poppins;
+    font-size: 16px;
+    border-top: darkgray 1px solid;
+   
+}
+
+#weather-box{
+    background-color: #03071e;
+    max-width: 95%;
+    height: 250px;
+    margin-top: 15px;
+    border-radius: 17px;
+    text-align: center;
+  
+}
+
+#searchbox{
+    margin-top: 15px;
+   
+    max-width: 95%;
+ 
+}
+
+#searchbox input{
+    width: 95%;
+    outline: none;
+    border: 2px solid;
+    border-radius: 17px;
+    height: 30px;
+    text-align: center;
+}
+
+#searchbox input::placeholder{
+    font-family: poppins;
+    text-align: center;
+    padding: 10px;
+
+}
+
+#temp{
+    color: white;
+    font-family: poppins;
+    padding-top: 100px;
+    font-size: 30px;
+    
+    
+}
+
+footer{
+    text-align: center;
+}
+
+.about p{
+    max-width: 250px;
+  
+
+}
+
+#submit_button{
+    max-width: 105px;
+    margin-top: 15px;
+    border: none;
+    background-color: #03071e;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+#submit_button:hover{
+    
+    background-color: #fb8500;
+   
+}
+#location{
+    
+  float: left;
+  position: relative;
+  left: 25px;
+  top: 15px;
+  
+}
+
+#location p{
+    color: aliceblue;
+    float: right;
+    display: inline;
+    font-size: 16px;
+    position: relative;
+    bottom: 5px;
+    left: 7px;
+   
+}
+
+#location img{
+    width: 25px;
+    display: inline;
+}
+
+
+@media only screen and (max-width: 768px) {
+    #temp {
+      font-size: 18px;
+    }
+  }
+
+
