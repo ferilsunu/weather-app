@@ -165,7 +165,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.55;
+  opacity: 1;
 }
 
 .sky-ambient-glow {
@@ -174,10 +174,11 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  height: 50vh;
-  background: radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.02), transparent 70%);
+  height: 60vh;
+  background: radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.1), transparent 70%);
   pointer-events: none;
   z-index: 0;
+  transition: background 1.2s ease;
 }
 
 /* ---------------------------------------------------------

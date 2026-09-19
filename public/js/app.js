@@ -647,12 +647,14 @@
   }
 
   /* =========================================================
-     7. PROCEDURAL MONOCHROME PARTICLE CANVAS
+     7. PROCEDURAL WEATHER ATMOSPHERE CANVAS
      ========================================================= */
   const canvas = document.getElementById('weather-canvas');
   let ctx = canvas ? canvas.getContext('2d') : null;
   let particles = [];
   let currentTheme = 'clear';
+  let isDaytime = true;
+  let animTime = 0;
 
   function initCanvas() {
     if (!canvas) return;
@@ -668,24 +670,86 @@
     canvas.height = window.innerHeight;
   }
 
-  function updateCanvasAtmosphere(category) {
-    currentTheme = category || 'clear';
+  function updateCanvasAtmosphere(category, isDay) {
+    currentTheme = (category || 'clear').toLowerCase();
+    isDaytime = isDay !== undefined ? Boolean(isDay) : true;
+
+    // Update ambient glow gradient based on current weather
+    const glowEl = document.querySelector('.sky-ambient-glow');
+    if (glowEl) {
+      if (currentTheme.includes('rain') || currentTheme.includes('drizzle')) {
+        glowEl.style.background = 'radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.15), transparent 70%)';
+      } else if (currentTheme.includes('thunder') || currentTheme.includes('lightning')) {
+        glowEl.style.background = 'radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.18), transparent 70%)';
+      } else if (currentTheme.includes('snow')) {
+        glowEl.style.background = 'radial-gradient(circle at 50% 0%, rgba(186, 230, 253, 0.22), transparent 70%)';
+      } else if (currentTheme.includes('cloud') || currentTheme.includes('fog') || currentTheme.includes('overcast')) {
+        glowEl.style.background = 'radial-gradient(circle at 50% 0%, rgba(148, 163, 184, 0.16), transparent 70%)';
+      } else {
+        // Clear sky
+        glowEl.style.background = isDaytime 
+          ? 'radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.14), transparent 70%)'
+          : 'radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12), transparent 70%)';
+      }
+    }
+
     createParticles();
   }
 
   function createParticles() {
     particles = [];
-    const count = currentTheme === 'rain' ? 90 : currentTheme === 'snow' ? 60 : 35;
+    const w = canvas?.width || window.innerWidth;
+    const h = canvas?.height || window.innerHeight;
+
+    let count = 45;
+    if (currentTheme.includes('rain')) count = 110;
+    else if (currentTheme.includes('snow')) count = 75;
+    else if (currentTheme.includes('cloud') || currentTheme.includes('fog')) count = 30;
 
     for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * (canvas?.width || window.innerWidth),
-        y: Math.random() * (canvas?.height || window.innerHeight),
-        speedX: currentTheme === 'rain' ? 1.2 : (Math.random() - 0.5) * 0.5,
-        speedY: currentTheme === 'rain' ? Math.random() * 7 + 5 : currentTheme === 'snow' ? Math.random() * 2 + 0.8 : (Math.random() - 0.5) * 0.3,
-        size: currentTheme === 'rain' ? Math.random() * 10 + 6 : currentTheme === 'snow' ? Math.random() * 2.5 + 1 : Math.random() * 1.8 + 0.4,
-        alpha: Math.random() * 0.6 + 0.2
-      });
+      if (currentTheme.includes('rain')) {
+        particles.push({
+          x: Math.random() * (w + 200) - 100,
+          y: Math.random() * h,
+          speedX: 1.8,
+          speedY: Math.random() * 8 + 12,
+          length: Math.random() * 18 + 14,
+          thickness: Math.random() * 1.5 + 0.8,
+          alpha: Math.random() * 0.5 + 0.35
+        });
+      } else if (currentTheme.includes('snow')) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          speedX: (Math.random() - 0.5) * 0.8,
+          speedY: Math.random() * 1.8 + 0.8,
+          radius: Math.random() * 3 + 1.5,
+          oscAmp: Math.random() * 2 + 1,
+          oscSpeed: Math.random() * 0.02 + 0.01,
+          alpha: Math.random() * 0.6 + 0.3
+        });
+      } else if (currentTheme.includes('cloud') || currentTheme.includes('fog')) {
+        particles.push({
+          x: Math.random() * (w + 400) - 200,
+          y: Math.random() * (h * 0.6),
+          speedX: Math.random() * 0.4 + 0.15,
+          speedY: (Math.random() - 0.5) * 0.05,
+          radius: Math.random() * 90 + 50,
+          alpha: Math.random() * 0.08 + 0.04
+        });
+      } else {
+        // Clear (Day = Golden solar dust, Night = Twinkling stars)
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          speedX: (Math.random() - 0.5) * 0.6,
+          speedY: isDaytime ? -(Math.random() * 0.8 + 0.2) : (Math.random() - 0.5) * 0.3,
+          radius: Math.random() * 3.5 + 1.2,
+          alpha: Math.random() * 0.6 + 0.25,
+          pulseSpeed: Math.random() * 0.03 + 0.01,
+          pulsePhase: Math.random() * Math.PI * 2
+        });
+      }
     }
   }
 
@@ -693,41 +757,97 @@
     if (!ctx || !canvas) return;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    animTime += 1;
 
-    if (currentTheme === 'rain') {
-      ctx.strokeStyle = 'rgba(15, 23, 42, 0.35)';
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
+    const w = canvas.width;
+    const h = canvas.height;
+
+    if (currentTheme.includes('rain')) {
+      // Rain rendering
       for (const p of particles) {
+        ctx.strokeStyle = `rgba(14, 165, 233, ${p.alpha})`;
+        ctx.lineWidth = p.thickness;
+        ctx.beginPath();
         ctx.moveTo(p.x, p.y);
-        ctx.lineTo(p.x + p.speedX * 2, p.y + p.size);
+        ctx.lineTo(p.x + p.speedX * 3, p.y + p.length);
+        ctx.stroke();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.y > h) {
+          p.y = -20;
+          p.x = Math.random() * (w + 200) - 100;
+        }
+      }
+    } else if (currentTheme.includes('snow')) {
+      // Snow rendering
+      for (const p of particles) {
+        ctx.fillStyle = `rgba(100, 116, 139, ${p.alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x + Math.sin(animTime * p.oscSpeed) * p.oscAmp * 10, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+
         p.y += p.speedY;
         p.x += p.speedX;
-        if (p.y > canvas.height) { p.y = -20; p.x = Math.random() * canvas.width; }
+
+        if (p.y > h) {
+          p.y = -10;
+          p.x = Math.random() * w;
+        }
       }
-      ctx.stroke();
-    } else if (currentTheme === 'snow') {
-      ctx.fillStyle = 'rgba(100, 116, 139, 0.5)';
+    } else if (currentTheme.includes('cloud') || currentTheme.includes('fog')) {
+      // Cloud puffs rendering
       for (const p of particles) {
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius);
+        grad.addColorStop(0, `rgba(148, 163, 184, ${p.alpha})`);
+        grad.addColorStop(1, 'rgba(148, 163, 184, 0)');
+
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
+
+        p.x += p.speedX;
         p.y += p.speedY;
-        p.x += Math.sin(p.y * 0.02) * 0.3;
-        if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
+
+        if (p.x - p.radius > w) {
+          p.x = -p.radius;
+          p.y = Math.random() * (h * 0.6);
+        }
       }
     } else {
-      ctx.fillStyle = 'rgba(148, 163, 184, 0.3)';
+      // Clear sky floating solar particles & night stars
       for (const p of particles) {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-        p.y += p.speedX;
+        const pulse = Math.sin(animTime * p.pulseSpeed + p.pulsePhase);
+        const currentAlpha = Math.max(0.1, p.alpha + pulse * 0.2);
+
+        if (isDaytime) {
+          // Golden sun flare / dust
+          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 2);
+          grad.addColorStop(0, `rgba(245, 158, 11, ${currentAlpha})`);
+          grad.addColorStop(0.5, `rgba(251, 191, 36, ${currentAlpha * 0.6})`);
+          grad.addColorStop(1, 'rgba(251, 191, 36, 0)');
+
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius * 2, 0, Math.PI * 2);
+          ctx.fill();
+        } else {
+          // Night twilight star
+          ctx.fillStyle = `rgba(99, 102, 241, ${currentAlpha})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        p.x += p.speedX;
         p.y += p.speedY;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
       }
     }
 
