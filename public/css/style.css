@@ -402,7 +402,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 #weather-box {
-  background-color: #ffffff;
+  background-color: #03071e;
   width: 100%;
   max-width: 580px;
   min-height: 240px;
@@ -410,8 +410,7 @@ body.mode-2020 .sky-ambient-glow {
   border-radius: 17px;
   text-align: center;
   padding: 24px 20px;
-  border: 2px solid #000000;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 36px rgba(3, 7, 30, 0.28);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -429,18 +428,18 @@ body.mode-2020 .sky-ambient-glow {
 .pin-img, .vintage-pin-icon {
   width: 20px;
   height: 20px;
-  color: #000000;
+  color: #ffffff;
 }
 
 #place {
   font-family: var(--font-vintage);
-  color: #000000;
+  color: #f8fafc;
   font-size: 19px;
   font-weight: 600;
 }
 
 #temp {
-  color: #000000;
+  color: #ffffff;
   font-family: var(--font-vintage);
   font-size: clamp(24px, 5vw, 34px);
   font-weight: 700;
@@ -464,7 +463,7 @@ body.mode-2020 .sky-ambient-glow {
 #searchbox input[type="text"] {
   width: 100%;
   outline: none;
-  border: 2px solid #000000;
+  border: 2px solid #03071e;
   border-radius: 17px;
   height: 44px;
   text-align: center;
@@ -475,7 +474,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 #searchbox input[type="submit"] {
-  background-color: #000000;
+  background-color: #03071e;
   color: #ffffff;
   border: none;
   border-radius: 17px;
@@ -484,6 +483,11 @@ body.mode-2020 .sky-ambient-glow {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#searchbox input[type="submit"]:hover {
+  background-color: #fb8500;
 }
 
 .footer-2020 {

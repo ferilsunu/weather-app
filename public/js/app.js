@@ -39,15 +39,30 @@
     clear: 'sun'
   };
 
+  function toPascalCase(str) {
+    if (!str) return '';
+    return str.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('');
+  }
+
   function getLucideSvg(iconName, options = { width: 20, height: 20, 'stroke-width': 2 }) {
-    if (window.lucide && window.lucide.icons && window.lucide.icons[iconName]) {
-      return window.lucide.icons[iconName].toSvg(options);
+    const pName = toPascalCase(iconName);
+    const lucideObj = window.lucide;
+    const iconDef = (lucideObj && lucideObj[pName]) || (lucideObj && lucideObj.icons && lucideObj.icons[pName]);
+    if (!iconDef || !Array.isArray(iconDef)) {
+      return `<i data-lucide="${iconName}"></i>`;
     }
-    // Fallback if not ready yet
-    const w = options.width || 20;
-    const h = options.height || 20;
+    const width = options.width || 20;
+    const height = options.height || 20;
+    const strokeWidth = options['stroke-width'] || options.strokeWidth || 2;
     const cls = options.class || '';
-    return `<i data-lucide="${iconName}" class="${cls}" style="width:${w}px; height:${h}px;"></i>`;
+    const style = options.style || '';
+
+    const inner = iconDef.map(([tag, attrs]) => {
+      const attrStr = Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ');
+      return `<${tag} ${attrStr}></${tag}>`;
+    }).join('');
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" class="${cls}" style="${style}">${inner}</svg>`;
   }
 
   function formatTemp(celsius) {
@@ -119,6 +134,9 @@
       }
     }
     updateEraPill(mode);
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
   }
 
   btnMode2020.addEventListener('click', () => setMode('2020'));
@@ -783,13 +801,19 @@
   /* =========================================================
      9. BOOTSTRAP
      ========================================================= */
-  document.addEventListener('DOMContentLoaded', () => {
+  function bootstrap() {
     if (window.lucide && typeof window.lucide.createIcons === 'function') {
       window.lucide.createIcons();
     }
     initCanvas();
     setMode(state.currentMode);
     loadQueryWeather('Dubai');
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootstrap);
+  } else {
+    bootstrap();
+  }
 
 })();
