@@ -48,14 +48,15 @@
     const pName = toPascalCase(iconName);
     const lucideObj = window.lucide;
     const iconDef = (lucideObj && lucideObj[pName]) || (lucideObj && lucideObj.icons && lucideObj.icons[pName]);
-    if (!iconDef || !Array.isArray(iconDef)) {
-      return `<i data-lucide="${iconName}"></i>`;
-    }
     const width = options.width || 20;
     const height = options.height || 20;
     const strokeWidth = options['stroke-width'] || options.strokeWidth || 2;
     const cls = options.class || '';
     const style = options.style || '';
+
+    if (!iconDef || !Array.isArray(iconDef)) {
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" stroke-linejoin="round" class="${cls}" style="${style}"><circle cx="12" cy="12" r="4"></circle></svg>`;
+    }
 
     const inner = iconDef.map(([tag, attrs]) => {
       const attrStr = Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ');

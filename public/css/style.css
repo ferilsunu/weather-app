@@ -402,7 +402,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 #weather-box {
-  background-color: #03071e;
+  background-color: #03071e !important;
   width: 100%;
   max-width: 580px;
   min-height: 240px;
@@ -410,6 +410,7 @@ body.mode-2020 .sky-ambient-glow {
   border-radius: 17px;
   text-align: center;
   padding: 24px 20px;
+  border: none !important;
   box-shadow: 0 12px 36px rgba(3, 7, 30, 0.28);
   display: flex;
   flex-direction: column;
@@ -428,18 +429,20 @@ body.mode-2020 .sky-ambient-glow {
 .pin-img, .vintage-pin-icon {
   width: 20px;
   height: 20px;
-  color: #ffffff;
+  color: #ffffff !important;
+  fill: none;
+  stroke: #ffffff;
 }
 
 #place {
   font-family: var(--font-vintage);
-  color: #f8fafc;
+  color: #f8fafc !important;
   font-size: 19px;
   font-weight: 600;
 }
 
 #temp {
-  color: #ffffff;
+  color: #ffffff !important;
   font-family: var(--font-vintage);
   font-size: clamp(24px, 5vw, 34px);
   font-weight: 700;
