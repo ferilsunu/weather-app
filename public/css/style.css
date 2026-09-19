@@ -1,12 +1,12 @@
 /* =========================================================
-   ATMOSPHERE WEATHER - OBSIDIAN MONOCHROME (B&W) THEME
+   ATMOSPHERE WEATHER - LUXURY LIGHT MONOCHROME THEME
    Fonts: Poppins (Self-Hosted Local Typography)
-   Design: Luxury Obsidian Black & White Minimalist Glassmorphism
+   Design: Minimalist Pearl White & Slate Glassmorphism
    Author: Feril Sunu
    ========================================================= */
 
 /* ---------------------------------------------------------
-   1. LOCAL POSTL-INDEPENDENT POFFINS FONTS
+   1. LOCAL TYPOGRAPHY
    --------------------------------------------------------- */
 @font-face {
   font-family: 'Poppins';
@@ -57,37 +57,37 @@
 }
 
 /* ---------------------------------------------------------
-   2. OBSIDIAN MONOCHROME VARIABLES
+   2. LIGHT MONOCHROME VARIABLES
    --------------------------------------------------------- */
 :root {
   --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-vintage: 'Poppins', sans-serif;
 
-  /* Pure Black & White Palette */
-  --bg-deep: #000000;
-  --bg-surface: #09090b;
-  --bg-elevated: #121214;
-  --bg-hover: #18181b;
+  /* Crisp Light Palette */
+  --bg-deep: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --bg-hover: #e2e8f0;
 
-  --card-glass: rgba(18, 18, 20, 0.85);
-  --card-glass-hover: rgba(24, 24, 27, 0.95);
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-focus: rgba(255, 255, 255, 0.35);
-  --border-highlight: rgba(255, 255, 255, 0.18);
-  --inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  --card-glass: rgba(255, 255, 255, 0.88);
+  --card-glass-hover: rgba(255, 255, 255, 0.98);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-focus: rgba(15, 23, 42, 0.3);
+  --border-highlight: rgba(0, 0, 0, 0.16);
+  --inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
 
-  --text-pure: #ffffff;
-  --text-bright: #f4f4f5;
-  --text-muted: #a1a1aa;
-  --text-dim: #71717a;
-  --text-dark: #3f3f46;
+  --text-pure: #09090b;
+  --text-bright: #0f172a;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --text-dark: #cbd5e1;
 
-  --accent-white: #ffffff;
-  --accent-silver: #e4e4e7;
-  --accent-zinc: #71717a;
+  --accent-white: #0f172a;
+  --accent-silver: #334155;
+  --accent-zinc: #94a3b8;
 
-  --shadow-obsidian: 0 16px 36px -6px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--border-subtle);
-  --shadow-glow: 0 0 25px rgba(255, 255, 255, 0.1);
+  --shadow-obsidian: 0 16px 36px -6px rgba(15, 23, 42, 0.08), 0 0 0 1px var(--border-subtle);
+  --shadow-glow: 0 0 25px rgba(15, 23, 42, 0.06);
 
   --radius-xxl: 24px;
   --radius-xl: 18px;
@@ -97,11 +97,11 @@
 }
 
 /* ---------------------------------------------------------
-   3. GLOBAL CUSTOM SCROLLBARS EVERYWHERE
+   3. GLOBAL CUSTOM SCROLLBARS
    --------------------------------------------------------- */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+  scrollbar-color: rgba(15, 23, 42, 0.2) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -114,13 +114,13 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(15, 23, 42, 0.15);
   border-radius: 10px;
   border: 1px solid transparent;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(15, 23, 42, 0.35);
 }
 
 *::-webkit-scrollbar-corner {
@@ -148,7 +148,7 @@ body {
   width: 100%;
   font-family: var(--font-main);
   background-color: var(--bg-deep);
-  background-image: radial-gradient(circle at 50% 0%, #141417 0%, #08080a 50%, #000000 100%);
+  background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #f1f5f9 55%, #e2e8f0 100%);
   background-attachment: fixed;
   background-size: cover;
   color: var(--text-bright);
@@ -166,7 +166,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+  opacity: 0.65;
 }
 
 .sky-ambient-glow {
@@ -176,7 +176,7 @@ body {
   transform: translateX(-50%);
   width: 100vw;
   height: 50vh;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04), transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 0.03), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -190,7 +190,7 @@ body {
   left: 0;
   width: 100%;
   z-index: 500;
-  background: rgba(8, 8, 10, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border-subtle);
@@ -217,18 +217,18 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ffffff, #52525b);
+  background: linear-gradient(135deg, #0f172a, #64748b);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(15, 23, 42, 0.15);
 }
 
 .orb-core {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #000000;
+  background: #ffffff;
 }
 
 .brand-titles {
@@ -240,7 +240,7 @@ body {
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #ffffff;
+  color: #0f172a;
   line-height: 1.1;
 }
 
@@ -256,7 +256,7 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(15, 23, 42, 0.05);
   border: 1px solid var(--border-subtle);
   border-radius: 40px;
   padding: 3px;
@@ -284,11 +284,11 @@ body {
 .era-toggle-btn small {
   font-size: 9px;
   font-weight: 600;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .era-toggle-btn.active {
-  color: #000000;
+  color: #ffffff;
 }
 
 .sparkle-icon {
@@ -300,8 +300,8 @@ body {
   top: 3px;
   bottom: 3px;
   border-radius: 30px;
-  background: #ffffff;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+  background: #0f172a;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.25);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 1;
 }
@@ -314,9 +314,9 @@ body {
 }
 
 .glass-btn {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(15, 23, 42, 0.05);
   border: 1px solid var(--border-subtle);
-  color: var(--text-bright);
+  color: #0f172a;
   font-family: var(--font-main);
   font-weight: 700;
   border-radius: 20px;
@@ -329,8 +329,8 @@ body {
 }
 
 .glass-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(15, 23, 42, 0.1);
+  border-color: rgba(15, 23, 42, 0.2);
   transform: translateY(-1px);
 }
 
@@ -403,7 +403,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 #weather-box {
-  background-color: #000000;
+  background-color: #0f172a;
   width: 100%;
   max-width: 580px;
   min-height: 240px;
@@ -411,7 +411,7 @@ body.mode-2020 .sky-ambient-glow {
   border-radius: 17px;
   text-align: center;
   padding: 24px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -463,16 +463,18 @@ body.mode-2020 .sky-ambient-glow {
 #searchbox input[type="text"] {
   width: 100%;
   outline: none;
-  border: 2px solid #222222;
+  border: 2px solid #cbd5e1;
   border-radius: 17px;
   height: 44px;
   text-align: center;
   font-family: var(--font-vintage);
   font-size: 16px;
+  background: #ffffff;
+  color: #0f172a;
 }
 
 #searchbox input[type="submit"] {
-  background-color: #000000;
+  background-color: #0f172a;
   color: white;
   border: none;
   border-radius: 17px;
@@ -486,15 +488,15 @@ body.mode-2020 .sky-ambient-glow {
 .footer-2020 {
   font-family: var(--font-vintage);
   font-size: 14px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #e2e8f0;
   text-align: center;
   padding: 16px 0;
-  color: #555;
+  color: #64748b;
   margin-top: auto;
 }
 
 /* ---------------------------------------------------------
-   7. 2026 NEXTGEN OBSIDIAN MONOCHROME DASHBOARD
+   7. 2026 NEXTGEN LIGHT DASHBOARD
    --------------------------------------------------------- */
 .nextgen-container {
   max-width: 1380px;
@@ -502,7 +504,7 @@ body.mode-2020 .sky-ambient-glow {
   padding: 18px 20px 60px 20px;
 }
 
-/* Obsidian Glass Card */
+/* Light Glass Card */
 .obsidian-card {
   background: var(--card-glass);
   backdrop-filter: blur(28px);
@@ -525,7 +527,7 @@ body.mode-2020 .sky-ambient-glow {
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px 12px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .title-with-icon {
@@ -539,7 +541,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .title-with-icon svg {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .mini-tag {
@@ -547,14 +549,14 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.8px;
   padding: 2px 7px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 /* ---------------------------------------------------------
-   8. SEARCH & AUTOCOMPLETE (FIXED Z-INDEX STACKING)
+   8. SEARCH & AUTOCOMPLETE
    --------------------------------------------------------- */
 .search-section {
   position: relative;
@@ -581,8 +583,8 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .search-bar-glass:focus-within {
-  border-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), var(--shadow-glow);
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.12), var(--shadow-glow);
 }
 
 .search-svg {
@@ -599,7 +601,7 @@ body.mode-2020 .sky-ambient-glow {
   font-family: var(--font-main);
   font-size: 14.5px;
   font-weight: 500;
-  color: #ffffff;
+  color: #0f172a;
   padding: 6px 0;
 }
 
@@ -608,9 +610,9 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .geo-btn {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.05);
   border: 1px solid var(--border-subtle);
-  color: #ffffff;
+  color: #0f172a;
   width: 36px;
   height: 36px;
   border-radius: 12px;
@@ -623,21 +625,21 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .geo-btn:hover {
-  background: #ffffff;
-  color: #000000;
+  background: #0f172a;
+  color: #ffffff;
   transform: scale(1.05);
 }
 
-/* Autocomplete Dropdown - Highest Z-Index */
+/* Autocomplete Dropdown */
 .autocomplete-dropdown {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
   right: 0;
-  background: #0d0d10;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-lg);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
   max-height: 320px;
   overflow-y: auto;
   z-index: 99999 !important;
@@ -654,18 +656,18 @@ body.mode-2020 .sky-ambient-glow {
   justify-content: space-between;
   padding: 12px 18px;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: background 0.15s ease;
 }
 
 .autocomplete-item:hover, .autocomplete-item.active {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.05);
 }
 
 .autocomplete-main {
   font-size: 14px;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .autocomplete-sub {
@@ -685,7 +687,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .city-pill {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.04);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
   padding: 6px 14px;
@@ -700,9 +702,9 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .city-pill:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #ffffff;
+  background: rgba(15, 23, 42, 0.08);
+  border-color: rgba(15, 23, 42, 0.2);
+  color: #0f172a;
   transform: translateY(-1px);
 }
 
@@ -724,11 +726,11 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 /* ---------------------------------------------------------
-   10. HERO SHOWCASE CARD (MONOCHROME)
+   10. HERO SHOWCASE CARD
    --------------------------------------------------------- */
 .hero-showcase {
   padding: 24px 28px;
-  background: linear-gradient(135deg, rgba(24, 24, 27, 0.9), rgba(9, 9, 11, 0.95));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
 }
 
 .hero-header-row {
@@ -748,7 +750,7 @@ body.mode-2020 .sky-ambient-glow {
   font-size: clamp(26px, 4vw, 36px);
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: #ffffff;
+  color: #0f172a;
   line-height: 1.1;
 }
 
@@ -777,9 +779,9 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.8px;
   padding: 5px 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #ffffff;
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: #0f172a;
   border-radius: 20px;
   flex-shrink: 0;
 }
@@ -788,8 +790,8 @@ body.mode-2020 .sky-ambient-glow {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 8px #ffffff;
+  background: #0f172a;
+  box-shadow: 0 0 8px rgba(15, 23, 42, 0.4);
   animation: pulse-dot 1.8s infinite;
 }
 
@@ -816,7 +818,7 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: -3px;
   line-height: 0.95;
-  background: linear-gradient(180deg, #ffffff 40%, #a1a1aa 100%);
+  background: linear-gradient(180deg, #0f172a 40%, #64748b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
@@ -825,14 +827,14 @@ body.mode-2020 .sky-ambient-glow {
 
 .degree-mark {
   font-size: 0.45em;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: #0f172a;
   margin-left: 2px;
 }
 
 .hero-condition-desc {
   font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
   margin-top: 6px;
 }
 
@@ -843,7 +845,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .hero-range-desc strong {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .hero-art-col {
@@ -854,7 +856,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .weather-3d-glyph {
   font-size: clamp(60px, 8vw, 80px);
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.15));
   animation: float-glyph 4s ease-in-out infinite;
 }
 
@@ -869,7 +871,7 @@ body.mode-2020 .sky-ambient-glow {
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .q-stat {
@@ -888,7 +890,7 @@ body.mode-2020 .sky-ambient-glow {
 .q-val {
   font-size: 14px;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 /* ---------------------------------------------------------
@@ -914,7 +916,7 @@ body.mode-2020 .sky-ambient-glow {
   gap: 8px;
   padding: 12px 14px;
   min-width: 76px;
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(15, 23, 42, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   flex-shrink: 0;
@@ -922,8 +924,8 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .hourly-item-box:hover, .hourly-item-box.now {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #ffffff;
+  background: rgba(15, 23, 42, 0.08);
+  border-color: #0f172a;
   transform: translateY(-2px);
 }
 
@@ -940,7 +942,7 @@ body.mode-2020 .sky-ambient-glow {
 .h-temp-txt {
   font-size: 15px;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .h-pop-txt {
@@ -967,7 +969,7 @@ body.mode-2020 .sky-ambient-glow {
   grid-template-columns: 85px 36px 1fr 90px;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   gap: 8px;
 }
 
@@ -983,7 +985,7 @@ body.mode-2020 .sky-ambient-glow {
 .day-title {
   font-size: 13.5px;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .day-date {
@@ -1014,7 +1016,7 @@ body.mode-2020 .sky-ambient-glow {
 .t-track {
   flex-grow: 1;
   height: 5px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.06);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -1025,13 +1027,13 @@ body.mode-2020 .sky-ambient-glow {
   top: 0;
   bottom: 0;
   border-radius: 10px;
-  background: linear-gradient(90deg, #71717a, #ffffff);
+  background: linear-gradient(90deg, #94a3b8, #0f172a);
 }
 
 .t-max {
   font-size: 13px;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
   width: 28px;
 }
 
@@ -1046,7 +1048,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 /* ---------------------------------------------------------
-   13. DIAGNOSTICS MATRIX (MONOCHROME WIDGETS)
+   13. DIAGNOSTICS MATRIX
    --------------------------------------------------------- */
 .diagnostics-mosaic {
   display: grid;
@@ -1091,7 +1093,7 @@ body.mode-2020 .sky-ambient-glow {
 .big-num {
   font-size: 26px;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
   line-height: 1;
 }
 
@@ -1104,7 +1106,7 @@ body.mode-2020 .sky-ambient-glow {
 .big-num-sm {
   font-size: 20px;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .big-num-sm small {
@@ -1118,14 +1120,14 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   padding: 2px 8px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.06);
+  color: #0f172a;
+  border: 1px solid rgba(15, 23, 42, 0.12);
 }
 
 .color-track-bar {
   height: 5px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.06);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -1133,7 +1135,7 @@ body.mode-2020 .sky-ambient-glow {
 .color-track-fill {
   height: 100%;
   border-radius: 10px;
-  background: linear-gradient(90deg, #52525b, #ffffff);
+  background: linear-gradient(90deg, #94a3b8, #0f172a);
   transition: width 0.4s ease;
 }
 
@@ -1167,8 +1169,8 @@ body.mode-2020 .sky-ambient-glow {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  background: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1177,7 +1179,7 @@ body.mode-2020 .sky-ambient-glow {
   color: var(--text-dim);
 }
 
-.comp-n { position: absolute; top: 2px; color: #ffffff; }
+.comp-n { position: absolute; top: 2px; color: #0f172a; }
 .comp-s { position: absolute; bottom: 2px; }
 .comp-e { position: absolute; right: 3px; }
 .comp-w { position: absolute; left: 3px; }
@@ -1185,7 +1187,7 @@ body.mode-2020 .sky-ambient-glow {
 .compass-pointer-arrow {
   width: 2px;
   height: 38px;
-  background: linear-gradient(180deg, #ffffff 50%, #3f3f46 50%);
+  background: linear-gradient(180deg, #0f172a 50%, #94a3b8 50%);
   border-radius: 2px;
   transform: rotate(45deg);
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1213,6 +1215,15 @@ body.mode-2020 .sky-ambient-glow {
   height: 100%;
 }
 
+.solar-path-svg path {
+  stroke: rgba(15, 23, 42, 0.15);
+}
+
+#sun-orb {
+  fill: #0f172a;
+  filter: drop-shadow(0 0 6px rgba(15, 23, 42, 0.4));
+}
+
 .sun-times-row {
   display: flex;
   justify-content: space-between;
@@ -1226,7 +1237,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .sun-times-row strong {
   font-size: 12.5px;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 /* Moon Phase */
@@ -1248,7 +1259,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .moon-title-text {
   font-size: 13.5px;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .humidity-details {
@@ -1260,7 +1271,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .badge-sub {
-  color: #ffffff;
+  color: #0f172a;
   font-weight: 700;
 }
 
@@ -1284,7 +1295,7 @@ body.mode-2020 .sky-ambient-glow {
   gap: 12px;
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(15, 23, 42, 0.025);
   border: 1px solid var(--border-subtle);
 }
 
@@ -1304,7 +1315,7 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .lifestyle-msg {
@@ -1321,13 +1332,13 @@ body.mode-2020 .sky-ambient-glow {
 .radar-interactive-canvas {
   width: 100%;
   height: 240px;
-  background: #09090b;
+  background: #f1f5f9;
   border-bottom-left-radius: var(--radius-xxl);
   border-bottom-right-radius: var(--radius-xxl);
 }
 
 .leaflet-container {
-  background: #000000 !important;
+  background: #f8fafc !important;
   font-family: var(--font-main) !important;
 }
 
@@ -1352,7 +1363,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .app-footer-2026 a:hover {
-  color: #ffffff;
+  color: #0f172a;
 }
 
 .footer-col-right {
@@ -1363,11 +1374,11 @@ body.mode-2020 .sky-ambient-glow {
 
 .sec-badge {
   padding: 2px 7px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.06);
   border-radius: 6px;
   font-size: 10px;
   font-weight: 700;
-  color: #ffffff;
+  color: #0f172a;
 }
 
 /* ---------------------------------------------------------

@@ -658,7 +658,7 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (currentTheme === 'rain') {
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.strokeStyle = 'rgba(15, 23, 42, 0.35)';
       ctx.lineWidth = 1.2;
       ctx.beginPath();
       for (const p of particles) {
@@ -670,7 +670,7 @@
       }
       ctx.stroke();
     } else if (currentTheme === 'snow') {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.fillStyle = 'rgba(100, 116, 139, 0.5)';
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -680,7 +680,7 @@
         if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
       }
     } else {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.3)';
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
