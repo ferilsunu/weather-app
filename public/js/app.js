@@ -1,6 +1,6 @@
 /**
- * ATMOSPHERE WEATHER PLATFORM - JAVASCRIPT CONTROLLER v2.2
- * Monochrome Edition (Black & White Luxury Minimalist)
+ * ATMOSPHERE WEATHER PLATFORM - JAVASCRIPT CONTROLLER v2.3
+ * Monochrome Edition (Black & White Luxury Minimalist with Lucide Icons)
  * Author: Feril Sunu
  */
 
@@ -20,31 +20,34 @@
     audioNodes: null
   };
 
-  // Weather condition icons mapping
-  const GLYPHS = {
-    sun: '☀️',
-    'sun-dim': '🌤️',
-    'cloud-sun': '⛅',
-    'cloud-moon': '☁️',
-    moon: '🌙',
-    'moon-dim': '🌘',
-    cloud: '☁️',
-    'cloud-fog': '🌫️',
-    'cloud-drizzle': '🌦️',
-    'cloud-rain': '🌧️',
-    'cloud-lightning-rain': '⛈️',
-    'cloud-lightning': '🌩️',
-    'cloud-snow': '🌨️',
-    snowflake: '❄️'
+  // Weather condition icons mapping to Lucide icon names
+  const GLYPH_MAP = {
+    sun: 'sun',
+    'sun-dim': 'sun-medium',
+    'cloud-sun': 'cloud-sun',
+    'cloud-moon': 'cloud-moon',
+    moon: 'moon',
+    'moon-dim': 'moon-star',
+    cloud: 'cloud',
+    'cloud-fog': 'cloud-fog',
+    'cloud-drizzle': 'cloud-drizzle',
+    'cloud-rain': 'cloud-rain',
+    'cloud-lightning-rain': 'cloud-lightning',
+    'cloud-lightning': 'zap',
+    'cloud-snow': 'cloud-snow',
+    snowflake: 'snowflake',
+    clear: 'sun'
   };
 
-  function getFlagEmoji(countryCode) {
-    if (!countryCode || countryCode.length !== 2) return '🌐';
-    const codePoints = countryCode
-      .toUpperCase()
-      .split('')
-      .map(char => 127397 + char.charCodeAt(0));
-    return String.fromCodePoint(...codePoints);
+  function getLucideSvg(iconName, options = { width: 20, height: 20, 'stroke-width': 2 }) {
+    if (window.lucide && window.lucide.icons && window.lucide.icons[iconName]) {
+      return window.lucide.icons[iconName].toSvg(options);
+    }
+    // Fallback if not ready yet
+    const w = options.width || 20;
+    const h = options.height || 20;
+    const cls = options.class || '';
+    return `<i data-lucide="${iconName}" class="${cls}" style="width:${w}px; height:${h}px;"></i>`;
   }
 
   function formatTemp(celsius) {
@@ -59,6 +62,18 @@
     return state.unit === 'F' ? '°F' : '°C';
   }
 
+  function getLifestyleIcon(cat) {
+    const c = (cat || '').toLowerCase();
+    if (c.includes('uv') || c.includes('sun')) return 'sun';
+    if (c.includes('rain') || c.includes('umbrella')) return 'umbrella';
+    if (c.includes('wind') || c.includes('air')) return 'wind';
+    if (c.includes('health') || c.includes('aqi')) return 'heart-pulse';
+    if (c.includes('commute') || c.includes('travel')) return 'car';
+    if (c.includes('fitness') || c.includes('sport') || c.includes('outdoor')) return 'bike';
+    if (c.includes('cloth') || c.includes('wear')) return 'shirt';
+    return 'sparkles';
+  }
+
   /* =========================================================
      1. VERSION SWITCHER (2020 vs 2026)
      ========================================================= */
@@ -70,7 +85,7 @@
   const btnUnit = document.getElementById('btn-unit-toggle');
   const unitLabel = document.getElementById('unit-label');
   const btnSound = document.getElementById('btn-sound-toggle');
-  const soundIcon = document.getElementById('sound-icon');
+  const soundIconWrap = document.getElementById('sound-icon-wrap');
 
   function updateEraPill(mode) {
     if (!activePill) return;
@@ -188,7 +203,7 @@
                     <span class="autocomplete-main">${item.name}</span>
                     <span class="autocomplete-sub">${item.admin1 ? item.admin1 + ', ' : ''}${item.country}</span>
                   </div>
-                  <span class="flag-icon">${getFlagEmoji(item.country_code)}</span>
+                  <span class="country-badge">${item.country_code || 'GEO'}</span>
                 </div>
               `).join('');
               autocompleteList.classList.add('show');
@@ -334,7 +349,7 @@
 
     // 1. Hero Showcase
     const heroCity = document.getElementById('hero-city');
-    const heroFlag = document.getElementById('hero-flag');
+    const heroCountryBadge = document.getElementById('hero-country-badge');
     const heroLocalTime = document.getElementById('hero-local-time');
     const heroCoords = document.getElementById('hero-coords');
     const heroGlyphBox = document.getElementById('hero-glyph-box');
@@ -349,7 +364,7 @@
     const heroUvStat = document.getElementById('hero-uv-stat');
 
     if (heroCity) heroCity.textContent = data.place;
-    if (heroFlag) heroFlag.textContent = getFlagEmoji(data.country);
+    if (heroCountryBadge) heroCountryBadge.textContent = (data.country || 'GLOBAL').slice(0, 3).toUpperCase();
     if (heroCoords) heroCoords.textContent = `${data.latitude.toFixed(2)}°N, ${data.longitude.toFixed(2)}°E`;
     if (heroLocalTime) {
       const now = new Date();
@@ -357,8 +372,8 @@
     }
 
     if (heroGlyphBox) {
-      const glyph = GLYPHS[cur.icon] || (cur.is_day ? '☀️' : '🌙');
-      heroGlyphBox.innerHTML = `<span class="glyph-emoji">${glyph}</span>`;
+      const glyphKey = GLYPH_MAP[cur.icon] || (cur.is_day ? 'sun' : 'moon');
+      heroGlyphBox.innerHTML = getLucideSvg(glyphKey, { width: 72, height: 72, 'stroke-width': 1.8 });
     }
 
     if (heroTemp) heroTemp.textContent = formatTemp(cur.temperature);
@@ -385,11 +400,12 @@
     if (hourlyDeck && data.hourly) {
       hourlyDeck.innerHTML = data.hourly.slice(0, 24).map((h, i) => {
         const timeStr = h.time.split('T')[1].slice(0, 5);
-        const icon = GLYPHS[h.icon] || (h.is_day ? '☀️' : '🌙');
+        const iconKey = GLYPH_MAP[h.icon] || (h.is_day ? 'sun' : 'moon');
+        const iconSvg = getLucideSvg(iconKey, { width: 22, height: 22, 'stroke-width': 2, class: 'h-icon-svg' });
         return `
           <div class="hourly-item-box ${i === 0 ? 'now' : ''}">
             <span class="h-time-txt">${i === 0 ? 'Now' : timeStr}</span>
-            <span class="h-icon-emoji">${icon}</span>
+            <span class="h-icon-box">${iconSvg}</span>
             <span class="h-temp-txt">${formatTemp(h.temperature)}°</span>
             <span class="h-pop-txt">${h.precipitation_probability > 0 ? h.precipitation_probability + '%' : '0%'}</span>
           </div>
@@ -408,7 +424,8 @@
         const dateObj = new Date(d.date);
         const dayName = idx === 0 ? 'Today' : dateObj.toLocaleDateString('en-US', { weekday: 'short' });
         const dateFormatted = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-        const icon = GLYPHS[d.icon] || '☀️';
+        const iconKey = GLYPH_MAP[d.icon] || 'sun';
+        const iconSvg = getLucideSvg(iconKey, { width: 20, height: 20, 'stroke-width': 2, class: 'day-icon-svg' });
         
         const leftPercent = Math.max(0, ((d.temp_min - allMin) / range) * 100);
         const widthPercent = Math.max(15, ((d.temp_max - d.temp_min) / range) * 100);
@@ -419,7 +436,7 @@
               <span class="day-title">${dayName}</span>
               <span class="day-date">${dateFormatted}</span>
             </div>
-            <span class="day-icon-emoji">${icon}</span>
+            <div class="day-icon-box">${iconSvg}</div>
             <div class="temp-bar-container">
               <span class="t-min">${formatTemp(d.temp_min)}°</span>
               <div class="t-track">
@@ -527,17 +544,9 @@
     if (data.moon_phase && moonName && moonIllum) {
       moonName.textContent = data.moon_phase.name;
       moonIllum.textContent = `${data.moon_phase.illumination}% Illumination`;
-      const phases = {
-        'New Moon': '🌑',
-        'Waxing Crescent': '🌒',
-        'First Quarter': '🌓',
-        'Waxing Gibbous': '🌔',
-        'Full Moon': '🌕',
-        'Waning Gibbous': '🌖',
-        'Last Quarter': '🌗',
-        'Waning Crescent': '🌘'
-      };
-      if (moonGlyph) moonGlyph.textContent = phases[data.moon_phase.name] || '🌕';
+      if (moonGlyph) {
+        moonGlyph.innerHTML = getLucideSvg('moon', { width: 36, height: 36, 'stroke-width': 1.8 });
+      }
     }
 
     // Precipitation & Pressure
@@ -562,15 +571,19 @@
     // Lifestyle & AI Briefing
     const insightsDeck = document.getElementById('insights-deck');
     if (insightsDeck && data.insights) {
-      insightsDeck.innerHTML = data.insights.map(item => `
-        <div class="lifestyle-item">
-          <span class="lifestyle-icon">⚡</span>
-          <div class="lifestyle-text-wrap">
-            <span class="lifestyle-tag">${item.category}</span>
-            <p class="lifestyle-msg">${item.message}</p>
+      insightsDeck.innerHTML = data.insights.map(item => {
+        const iconKey = getLifestyleIcon(item.category);
+        const iconSvg = getLucideSvg(iconKey, { width: 16, height: 16, 'stroke-width': 2.2 });
+        return `
+          <div class="lifestyle-item">
+            <span class="lifestyle-icon">${iconSvg}</span>
+            <div class="lifestyle-text-wrap">
+              <span class="lifestyle-tag">${item.category}</span>
+              <p class="lifestyle-msg">${item.message}</p>
+            </div>
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     // Update Map
@@ -578,6 +591,11 @@
 
     // Update Monochrome Particle Canvas
     updateCanvasAtmosphere(cur.category, cur.is_day);
+
+    // Refresh any declarative Lucide tags
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
   }
 
   /* =========================================================
@@ -685,7 +703,7 @@
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-        p.x += p.speedX;
+        p.y += p.speedX;
         p.y += p.speedY;
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
@@ -702,11 +720,15 @@
      ========================================================= */
   function toggleAmbientAudio() {
     state.soundEnabled = !state.soundEnabled;
+    if (soundIconWrap) {
+      soundIconWrap.innerHTML = state.soundEnabled 
+        ? getLucideSvg('volume-2', { width: 16, height: 16, 'stroke-width': 2.2 })
+        : getLucideSvg('volume-x', { width: 16, height: 16, 'stroke-width': 2.2 });
+    }
+
     if (state.soundEnabled) {
-      soundIcon.textContent = '🔊';
       startAudioSynth();
     } else {
-      soundIcon.textContent = '🔈';
       stopAudioSynth();
     }
   }
@@ -762,6 +784,9 @@
      9. BOOTSTRAP
      ========================================================= */
   document.addEventListener('DOMContentLoaded', () => {
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
     initCanvas();
     setMode(state.currentMode);
     loadQueryWeather('Dubai');

@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Obsidian Black & White Weather Platform by Feril Sunu">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Luxury Minimalist Light Weather Platform by Feril Sunu">
   <title>Weather • Feril Sunu</title>
 
   <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- App Styles -->
-  <link rel="stylesheet" href="/css/style.css?v=2.2.0">
+  <link rel="stylesheet" href="/css/style.css?v=3.6.0">
   <link rel="icon" type="image/png" href="/img/pin.png?v=2.2.0">
 </head>
 
@@ -25,11 +25,15 @@
   <header class="app-header">
     <div class="header-inner">
       <div class="brand-group">
-        <div class="brand-orb">
-          <div class="orb-core"></div>
+        <div class="brand-logo-icon" title="Atmospheric Telemetry">
+          <svg class="brand-logo-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+            <path d="M12 12v3"></path>
+            <path d="m9 15 3 3 3-3"></path>
+          </svg>
         </div>
         <div class="brand-titles">
-          <span class="brand-name">WEATHER</span>
+          <span class="brand-name">ATMOSPHERE</span>
           <span class="brand-sub">FERIL SUNU</span>
         </div>
       </div>
@@ -41,7 +45,7 @@
           <small>VINTAGE</small>
         </button>
         <button type="button" class="era-toggle-btn active" id="btn-mode-2026" data-mode="2026">
-          <span class="sparkle-icon">✦</span>
+          <i data-lucide="sparkles" class="sparkle-icon-svg"></i>
           <span>2026</span>
           <small>NEXTGEN</small>
         </button>
@@ -54,7 +58,7 @@
           <span id="unit-label">°C</span>
         </button>
         <button type="button" id="btn-sound-toggle" class="glass-btn icon-btn" title="Ambient Weather Audio">
-          <span id="sound-icon">🔈</span>
+          <span id="sound-icon-wrap"><i data-lucide="volume-2" id="sound-icon"></i></span>
         </button>
       </div>
     </div>
@@ -69,7 +73,7 @@
 
       <div id="weather-box">
         <div id="location">
-          <img src="/img/pin.png" alt="pin" class="pin-img">
+          <i data-lucide="map-pin" class="vintage-pin-icon"></i>
           <p id="place">--</p>
         </div>
         <p id="temp">Type Your Location Below</p>
@@ -95,15 +99,10 @@
       <!-- Search & Autocomplete Section -->
       <section class="search-section">
         <div class="search-bar-glass">
-          <svg class="search-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
+          <i data-lucide="search" class="search-svg"></i>
           <input type="text" id="input-2026" placeholder="Search city or coordinates (e.g. Dubai, London, Tokyo)..." autocomplete="off" spellcheck="false">
           <button type="button" id="btn-geo-detect" class="geo-btn" title="Use My Current GPS Location" aria-label="Locate me">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
-            </svg>
+            <i data-lucide="locate-fixed" class="geo-icon"></i>
           </button>
 
           <!-- Autocomplete Dropdown List with Top Z-Index -->
@@ -112,13 +111,13 @@
 
         <!-- Quick City Filter Pills -->
         <div class="city-pills-row" id="quick-cities">
-          <button type="button" class="city-pill" data-city="Dubai">🇦🇪 Dubai</button>
-          <button type="button" class="city-pill" data-city="London">🇬🇧 London</button>
-          <button type="button" class="city-pill" data-city="Tokyo">🇯🇵 Tokyo</button>
-          <button type="button" class="city-pill" data-city="New York">🇺🇸 New York</button>
-          <button type="button" class="city-pill" data-city="Singapore">🇸🇬 Singapore</button>
-          <button type="button" class="city-pill" data-city="Paris">🇫🇷 Paris</button>
-          <button type="button" class="city-pill" data-city="Sydney">🇦🇺 Sydney</button>
+          <button type="button" class="city-pill" data-city="Dubai">Dubai</button>
+          <button type="button" class="city-pill" data-city="London">London</button>
+          <button type="button" class="city-pill" data-city="Tokyo">Tokyo</button>
+          <button type="button" class="city-pill" data-city="New York">New York</button>
+          <button type="button" class="city-pill" data-city="Singapore">Singapore</button>
+          <button type="button" class="city-pill" data-city="Paris">Paris</button>
+          <button type="button" class="city-pill" data-city="Sydney">Sydney</button>
         </div>
       </section>
 
@@ -134,7 +133,7 @@
               <div class="hero-location-info">
                 <div class="city-flag-group">
                   <h1 id="hero-city">Dubai</h1>
-                  <span id="hero-flag" class="flag-icon">🇦🇪</span>
+                  <span id="hero-country-badge" class="country-badge">AE</span>
                 </div>
                 <div class="location-subtext">
                   <span id="hero-local-time">--:--</span>
@@ -162,27 +161,39 @@
               </div>
 
               <div class="hero-art-col">
-                <div class="weather-3d-glyph" id="hero-glyph-box">
-                  <span class="glyph-emoji">☀️</span>
+                <div class="weather-vector-glyph" id="hero-glyph-box">
+                  <i data-lucide="sun" style="width: 72px; height: 72px;"></i>
                 </div>
               </div>
             </div>
 
             <div class="hero-quick-stats">
               <div class="q-stat">
-                <span class="q-label">PRECIPITATION</span>
+                <div class="q-stat-hdr">
+                  <i data-lucide="cloud-rain" class="q-stat-icon"></i>
+                  <span class="q-label">PRECIPITATION</span>
+                </div>
                 <span class="q-val" id="hero-precip-stat">0%</span>
               </div>
               <div class="q-stat">
-                <span class="q-label">HUMIDITY</span>
+                <div class="q-stat-hdr">
+                  <i data-lucide="droplets" class="q-stat-icon"></i>
+                  <span class="q-label">HUMIDITY</span>
+                </div>
                 <span class="q-val" id="hero-humidity-stat">48%</span>
               </div>
               <div class="q-stat">
-                <span class="q-label">WIND SPEED</span>
+                <div class="q-stat-hdr">
+                  <i data-lucide="wind" class="q-stat-icon"></i>
+                  <span class="q-label">WIND SPEED</span>
+                </div>
                 <span class="q-val" id="hero-wind-stat">14 km/h</span>
               </div>
               <div class="q-stat">
-                <span class="q-label">UV INDEX</span>
+                <div class="q-stat-hdr">
+                  <i data-lucide="sun-medium" class="q-stat-icon"></i>
+                  <span class="q-label">UV INDEX</span>
+                </div>
                 <span class="q-val" id="hero-uv-stat">8 Very High</span>
               </div>
             </div>
@@ -192,7 +203,7 @@
           <div class="obsidian-card hourly-panel">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <i data-lucide="clock" style="width: 15px; height: 15px;"></i>
                 <span>24-HOUR HOURLY TRAJECTORY</span>
               </div>
               <span class="mini-tag">CHRONO</span>
@@ -206,7 +217,7 @@
           <div class="obsidian-card daily-panel">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <i data-lucide="calendar" style="width: 15px; height: 15px;"></i>
                 <span>7-DAY EXTENDED OUTLOOK</span>
               </div>
               <span class="mini-tag">ENSEMBLE</span>
@@ -228,7 +239,7 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">AIR QUALITY (AQI)</span>
-                <span class="diag-icon">🍃</span>
+                <span class="diag-icon"><i data-lucide="wind" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body">
                 <div class="aqi-main-val">
@@ -249,7 +260,7 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">UV RADIATION</span>
-                <span class="diag-icon">☀️</span>
+                <span class="diag-icon"><i data-lucide="sun-medium" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body">
                 <div class="aqi-main-val">
@@ -267,7 +278,7 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">WIND TELEMETRY</span>
-                <span class="diag-icon">💨</span>
+                <span class="diag-icon"><i data-lucide="compass" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body wind-diag-body">
                 <div class="mini-compass-frame">
@@ -291,13 +302,13 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">SOLAR CYCLE</span>
-                <span class="diag-icon">🌅</span>
+                <span class="diag-icon"><i data-lucide="sunrise" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body">
                 <div class="solar-arc-box">
                   <svg viewBox="0 0 120 50" class="solar-path-svg">
-                    <path d="M 10,45 Q 60,5 110,45" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2.5" stroke-dasharray="3,3" />
-                    <circle id="sun-orb" cx="60" cy="15" r="5" fill="#ffffff" filter="drop-shadow(0 0 6px rgba(255,255,255,0.9))" />
+                    <path d="M 10,45 Q 60,5 110,45" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="2" stroke-dasharray="3,3" />
+                    <circle id="sun-orb" cx="60" cy="15" r="5" fill="#000000" filter="drop-shadow(0 0 4px rgba(0,0,0,0.3))" />
                   </svg>
                 </div>
                 <div class="sun-times-row">
@@ -317,7 +328,7 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">HUMIDITY</span>
-                <span class="diag-icon">💧</span>
+                <span class="diag-icon"><i data-lucide="droplets" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body">
                 <div class="big-num" id="humidity-value">48%</div>
@@ -332,10 +343,12 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">MOON PHASE</span>
-                <span class="diag-icon">🌙</span>
+                <span class="diag-icon"><i data-lucide="moon" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body moon-diag-body">
-                <div class="moon-large-glyph" id="moon-glyph">🌕</div>
+                <div class="moon-large-glyph" id="moon-glyph">
+                  <i data-lucide="moon" style="width: 38px; height: 38px;"></i>
+                </div>
                 <div class="moon-info-lines">
                   <strong class="moon-title-text" id="moon-name">Full Moon</strong>
                   <span class="sub-line" id="moon-illum">98% Illumination</span>
@@ -347,7 +360,7 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">PRECIPITATION</span>
-                <span class="diag-icon">🌧️</span>
+                <span class="diag-icon"><i data-lucide="cloud-rain" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body">
                 <div class="big-num" id="precip-val">0.0 <small>mm</small></div>
@@ -359,7 +372,7 @@
             <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">PRESSURE</span>
-                <span class="diag-icon">🧭</span>
+                <span class="diag-icon"><i data-lucide="gauge" class="diag-icon-svg"></i></span>
               </div>
               <div class="diag-body">
                 <div class="big-num" id="pressure-val">1012 <small>hPa</small></div>
@@ -373,7 +386,7 @@
           <div class="obsidian-card lifestyle-card">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <i data-lucide="sparkles" style="width: 15px; height: 15px;"></i>
                 <span>INTELLIGENT LIFESTYLE BRIEFING</span>
               </div>
               <span class="mini-tag">DIAGNOSTICS</span>
@@ -387,7 +400,7 @@
           <div class="obsidian-card radar-card">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                <i data-lucide="map" style="width: 15px; height: 15px;"></i>
                 <span>GEOSPATIAL RADAR & SATELLITE</span>
               </div>
               <span class="mini-tag">RADAR</span>
@@ -409,7 +422,7 @@
           <span class="sep">•</span>
           <a href="https://ferilsunu.com" target="_blank" rel="noopener">Portfolio</a>
           <span class="sep">•</span>
-          <span class="sec-badge">v2.2 Monochrome</span>
+          <span class="sec-badge">v2.3 Monochrome</span>
         </div>
       </footer>
 
@@ -419,7 +432,10 @@
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+  <!-- Lucide Icons Local Engine -->
+  <script src="/js/lucide.min.js"></script>
+
   <!-- App Frontend Script -->
-  <script src="/js/app.js?v=2.2.0"></script>
+  <script src="/js/app.js?v=3.6.0"></script>
 </body>
 </html>

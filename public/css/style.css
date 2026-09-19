@@ -1,7 +1,7 @@
 /* =========================================================
-   ATMOSPHERE WEATHER - LUXURY LIGHT MONOCHROME THEME
+   ATMOSPHERE WEATHER - PURE WHITE & BLACK LIGHT MODE THEME
    Fonts: Poppins (Self-Hosted Local Typography)
-   Design: Minimalist Pearl White & Slate Glassmorphism
+   Design: Luxury Minimalist (White Primary, Black Secondary)
    Author: Feril Sunu
    ========================================================= */
 
@@ -57,37 +57,36 @@
 }
 
 /* ---------------------------------------------------------
-   2. LIGHT MONOCHROME VARIABLES
+   2. WHITE PRIMARY & BLACK SECONDARY VARIABLES
    --------------------------------------------------------- */
 :root {
   --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-vintage: 'Poppins', sans-serif;
 
-  /* Crisp Light Palette */
-  --bg-deep: #f8fafc;
+  /* Pure White & Black Theme */
+  --bg-deep: #ffffff;
   --bg-surface: #ffffff;
-  --bg-elevated: #f1f5f9;
-  --bg-hover: #e2e8f0;
+  --bg-elevated: #f8fafc;
+  --bg-hover: #f1f5f9;
 
-  --card-glass: rgba(255, 255, 255, 0.88);
-  --card-glass-hover: rgba(255, 255, 255, 0.98);
+  --card-glass: rgba(255, 255, 255, 0.95);
+  --card-glass-hover: #ffffff;
   --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-focus: rgba(15, 23, 42, 0.3);
-  --border-highlight: rgba(0, 0, 0, 0.16);
-  --inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.95);
+  --border-focus: #000000;
+  --border-highlight: rgba(0, 0, 0, 0.18);
+  --inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 1);
 
-  --text-pure: #09090b;
-  --text-bright: #0f172a;
-  --text-muted: #64748b;
-  --text-dim: #94a3b8;
-  --text-dark: #cbd5e1;
+  --text-pure: #000000;
+  --text-bright: #09090b;
+  --text-muted: #52525b;
+  --text-dim: #71717a;
+  --text-dark: #a1a1aa;
 
-  --accent-white: #0f172a;
-  --accent-silver: #334155;
-  --accent-zinc: #94a3b8;
+  --accent-black: #000000;
+  --accent-gray: #71717a;
 
-  --shadow-obsidian: 0 16px 36px -6px rgba(15, 23, 42, 0.08), 0 0 0 1px var(--border-subtle);
-  --shadow-glow: 0 0 25px rgba(15, 23, 42, 0.06);
+  --shadow-obsidian: 0 16px 36px -6px rgba(0, 0, 0, 0.06), 0 0 0 1px var(--border-subtle);
+  --shadow-glow: 0 0 25px rgba(0, 0, 0, 0.05);
 
   --radius-xxl: 24px;
   --radius-xl: 18px;
@@ -101,7 +100,7 @@
    --------------------------------------------------------- */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(15, 23, 42, 0.2) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -114,13 +113,13 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(15, 23, 42, 0.15);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   border: 1px solid transparent;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgba(15, 23, 42, 0.35);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 *::-webkit-scrollbar-corner {
@@ -147,8 +146,8 @@ body {
   min-height: 100%;
   width: 100%;
   font-family: var(--font-main);
-  background-color: var(--bg-deep);
-  background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #f1f5f9 55%, #e2e8f0 100%);
+  background-color: #ffffff;
+  background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #f8fafc 55%, #f1f5f9 100%);
   background-attachment: fixed;
   background-size: cover;
   color: var(--text-bright);
@@ -166,7 +165,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.65;
+  opacity: 0.55;
 }
 
 .sky-ambient-glow {
@@ -176,7 +175,7 @@ body {
   transform: translateX(-50%);
   width: 100vw;
   height: 50vh;
-  background: radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 0.03), transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(0, 0, 0, 0.02), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -190,7 +189,7 @@ body {
   left: 0;
   width: 100%;
   z-index: 500;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border-subtle);
@@ -213,22 +212,22 @@ body {
   gap: 10px;
 }
 
-.brand-orb {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #0f172a, #64748b);
+.brand-logo-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #000000;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 12px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
-.orb-core {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ffffff;
+.brand-logo-svg {
+  width: 20px;
+  height: 20px;
 }
 
 .brand-titles {
@@ -240,7 +239,7 @@ body {
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #0f172a;
+  color: #000000;
   line-height: 1.1;
 }
 
@@ -256,7 +255,7 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  background: rgba(15, 23, 42, 0.05);
+  background: rgba(0, 0, 0, 0.04);
   border: 1px solid var(--border-subtle);
   border-radius: 40px;
   padding: 3px;
@@ -300,8 +299,8 @@ body {
   top: 3px;
   bottom: 3px;
   border-radius: 30px;
-  background: #0f172a;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.25);
+  background: #000000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 1;
 }
@@ -314,9 +313,9 @@ body {
 }
 
 .glass-btn {
-  background: rgba(15, 23, 42, 0.05);
+  background: rgba(0, 0, 0, 0.04);
   border: 1px solid var(--border-subtle);
-  color: #0f172a;
+  color: #000000;
   font-family: var(--font-main);
   font-weight: 700;
   border-radius: 20px;
@@ -329,8 +328,8 @@ body {
 }
 
 .glass-btn:hover {
-  background: rgba(15, 23, 42, 0.1);
-  border-color: rgba(15, 23, 42, 0.2);
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.16);
   transform: translateY(-1px);
 }
 
@@ -364,7 +363,7 @@ body {
 body.mode-2020 {
   background-color: #ffffff;
   background-image: none;
-  color: #111111;
+  color: #000000;
 }
 
 body.mode-2020 .weather-canvas,
@@ -387,7 +386,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .header-2020 h1 {
-  color: #111111;
+  color: #000000;
   font-family: var(--font-vintage);
   font-size: clamp(28px, 6vw, 36px);
   font-weight: 600;
@@ -403,7 +402,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 #weather-box {
-  background-color: #0f172a;
+  background-color: #ffffff;
   width: 100%;
   max-width: 580px;
   min-height: 240px;
@@ -411,7 +410,8 @@ body.mode-2020 .sky-ambient-glow {
   border-radius: 17px;
   text-align: center;
   padding: 24px 20px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+  border: 2px solid #000000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -426,23 +426,24 @@ body.mode-2020 .sky-ambient-glow {
   margin-bottom: 12px;
 }
 
-.pin-img {
+.pin-img, .vintage-pin-icon {
   width: 20px;
-  height: auto;
+  height: 20px;
+  color: #000000;
 }
 
 #place {
   font-family: var(--font-vintage);
-  color: #ffffff;
+  color: #000000;
   font-size: 19px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 #temp {
-  color: white;
+  color: #000000;
   font-family: var(--font-vintage);
   font-size: clamp(24px, 5vw, 34px);
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 10px;
 }
 
@@ -463,25 +464,25 @@ body.mode-2020 .sky-ambient-glow {
 #searchbox input[type="text"] {
   width: 100%;
   outline: none;
-  border: 2px solid #cbd5e1;
+  border: 2px solid #000000;
   border-radius: 17px;
   height: 44px;
   text-align: center;
   font-family: var(--font-vintage);
   font-size: 16px;
   background: #ffffff;
-  color: #0f172a;
+  color: #000000;
 }
 
 #searchbox input[type="submit"] {
-  background-color: #0f172a;
-  color: white;
+  background-color: #000000;
+  color: #ffffff;
   border: none;
   border-radius: 17px;
   padding: 10px 28px;
   font-family: var(--font-vintage);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -496,7 +497,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 /* ---------------------------------------------------------
-   7. 2026 NEXTGEN LIGHT DASHBOARD
+   7. 2026 NEXTGEN PURE WHITE DASHBOARD
    --------------------------------------------------------- */
 .nextgen-container {
   max-width: 1380px;
@@ -504,9 +505,9 @@ body.mode-2020 .sky-ambient-glow {
   padding: 18px 20px 60px 20px;
 }
 
-/* Light Glass Card */
+/* White Glass Card */
 .obsidian-card {
-  background: var(--card-glass);
+  background: #ffffff;
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
   border: 1px solid var(--border-subtle);
@@ -541,7 +542,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .title-with-icon svg {
-  color: #0f172a;
+  color: #000000;
 }
 
 .mini-tag {
@@ -549,10 +550,10 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.8px;
   padding: 2px 7px;
-  background: rgba(15, 23, 42, 0.06);
-  color: #0f172a;
+  background: rgba(0, 0, 0, 0.06);
+  color: #000000;
   border-radius: 6px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* ---------------------------------------------------------
@@ -572,19 +573,17 @@ body.mode-2020 .sky-ambient-glow {
   z-index: 1001;
   display: flex;
   align-items: center;
-  background: var(--card-glass);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
+  background: #ffffff;
   border: 1px solid var(--border-subtle);
-  box-shadow: var(--inner-bevel);
+  box-shadow: var(--inner-bevel), 0 2px 10px rgba(0, 0, 0, 0.04);
   border-radius: var(--radius-xl);
   padding: 6px 14px 6px 16px;
   transition: all 0.25s ease;
 }
 
 .search-bar-glass:focus-within {
-  border-color: #0f172a;
-  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.12), var(--shadow-glow);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12), var(--shadow-glow);
 }
 
 .search-svg {
@@ -601,7 +600,7 @@ body.mode-2020 .sky-ambient-glow {
   font-family: var(--font-main);
   font-size: 14.5px;
   font-weight: 500;
-  color: #0f172a;
+  color: #000000;
   padding: 6px 0;
 }
 
@@ -610,9 +609,9 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .geo-btn {
-  background: rgba(15, 23, 42, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border: 1px solid var(--border-subtle);
-  color: #0f172a;
+  color: #000000;
   width: 36px;
   height: 36px;
   border-radius: 12px;
@@ -625,7 +624,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .geo-btn:hover {
-  background: #0f172a;
+  background: #000000;
   color: #ffffff;
   transform: scale(1.05);
 }
@@ -639,7 +638,7 @@ body.mode-2020 .sky-ambient-glow {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: var(--radius-lg);
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
   max-height: 320px;
   overflow-y: auto;
   z-index: 99999 !important;
@@ -661,13 +660,13 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .autocomplete-item:hover, .autocomplete-item.active {
-  background: rgba(15, 23, 42, 0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .autocomplete-main {
   font-size: 14px;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
 }
 
 .autocomplete-sub {
@@ -687,7 +686,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .city-pill {
-  background: rgba(15, 23, 42, 0.04);
+  background: rgba(0, 0, 0, 0.04);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);
   padding: 6px 14px;
@@ -702,9 +701,9 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .city-pill:hover {
-  background: rgba(15, 23, 42, 0.08);
-  border-color: rgba(15, 23, 42, 0.2);
-  color: #0f172a;
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
   transform: translateY(-1px);
 }
 
@@ -730,7 +729,8 @@ body.mode-2020 .sky-ambient-glow {
    --------------------------------------------------------- */
 .hero-showcase {
   padding: 24px 28px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border-subtle);
 }
 
 .hero-header-row {
@@ -750,7 +750,7 @@ body.mode-2020 .sky-ambient-glow {
   font-size: clamp(26px, 4vw, 36px);
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: #0f172a;
+  color: #000000;
   line-height: 1.1;
 }
 
@@ -779,9 +779,9 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.8px;
   padding: 5px 12px;
-  background: rgba(15, 23, 42, 0.05);
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  color: #0f172a;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #000000;
   border-radius: 20px;
   flex-shrink: 0;
 }
@@ -790,8 +790,8 @@ body.mode-2020 .sky-ambient-glow {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #0f172a;
-  box-shadow: 0 0 8px rgba(15, 23, 42, 0.4);
+  background: #000000;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   animation: pulse-dot 1.8s infinite;
 }
 
@@ -818,7 +818,7 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: -3px;
   line-height: 0.95;
-  background: linear-gradient(180deg, #0f172a 40%, #64748b 100%);
+  background: linear-gradient(180deg, #000000 40%, #52525b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
@@ -827,14 +827,14 @@ body.mode-2020 .sky-ambient-glow {
 
 .degree-mark {
   font-size: 0.45em;
-  -webkit-text-fill-color: #0f172a;
+  -webkit-text-fill-color: #000000;
   margin-left: 2px;
 }
 
 .hero-condition-desc {
   font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
   margin-top: 6px;
 }
 
@@ -845,7 +845,23 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .hero-range-desc strong {
-  color: #0f172a;
+  color: #000000;
+}
+
+.country-badge {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sparkle-icon-svg {
+  width: 12px;
+  height: 12px;
 }
 
 .hero-art-col {
@@ -854,10 +870,21 @@ body.mode-2020 .sky-ambient-glow {
   justify-content: center;
 }
 
-.weather-3d-glyph {
-  font-size: clamp(60px, 8vw, 80px);
-  filter: drop-shadow(0 10px 20px rgba(15, 23, 42, 0.15));
+.weather-vector-glyph {
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
   animation: float-glyph 4s ease-in-out infinite;
+}
+
+.weather-vector-glyph svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.8;
 }
 
 @keyframes float-glyph {
@@ -877,7 +904,19 @@ body.mode-2020 .sky-ambient-glow {
 .q-stat {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+}
+
+.q-stat-hdr {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.q-stat-icon {
+  width: 13px;
+  height: 13px;
+  color: var(--text-dim);
 }
 
 .q-label {
@@ -890,7 +929,7 @@ body.mode-2020 .sky-ambient-glow {
 .q-val {
   font-size: 14px;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
 }
 
 /* ---------------------------------------------------------
@@ -916,7 +955,7 @@ body.mode-2020 .sky-ambient-glow {
   gap: 8px;
   padding: 12px 14px;
   min-width: 76px;
-  background: rgba(15, 23, 42, 0.03);
+  background: rgba(0, 0, 0, 0.025);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   flex-shrink: 0;
@@ -924,8 +963,8 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .hourly-item-box:hover, .hourly-item-box.now {
-  background: rgba(15, 23, 42, 0.08);
-  border-color: #0f172a;
+  background: rgba(0, 0, 0, 0.06);
+  border-color: #000000;
   transform: translateY(-2px);
 }
 
@@ -935,14 +974,23 @@ body.mode-2020 .sky-ambient-glow {
   color: var(--text-muted);
 }
 
-.h-icon-emoji {
-  font-size: 22px;
+.h-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  color: #000000;
+}
+
+.h-icon-svg {
+  width: 22px;
+  height: 22px;
 }
 
 .h-temp-txt {
   font-size: 15px;
   font-weight: 800;
-  color: #0f172a;
+  color: #000000;
 }
 
 .h-pop-txt {
@@ -969,7 +1017,7 @@ body.mode-2020 .sky-ambient-glow {
   grid-template-columns: 85px 36px 1fr 90px;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   gap: 8px;
 }
 
@@ -985,7 +1033,7 @@ body.mode-2020 .sky-ambient-glow {
 .day-title {
   font-size: 13.5px;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
 }
 
 .day-date {
@@ -993,9 +1041,16 @@ body.mode-2020 .sky-ambient-glow {
   color: var(--text-dim);
 }
 
-.day-icon-emoji {
-  font-size: 20px;
-  text-align: center;
+.day-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
+.day-icon-svg {
+  width: 20px;
+  height: 20px;
 }
 
 .temp-bar-container {
@@ -1016,7 +1071,7 @@ body.mode-2020 .sky-ambient-glow {
 .t-track {
   flex-grow: 1;
   height: 5px;
-  background: rgba(15, 23, 42, 0.06);
+  background: rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -1027,13 +1082,13 @@ body.mode-2020 .sky-ambient-glow {
   top: 0;
   bottom: 0;
   border-radius: 10px;
-  background: linear-gradient(90deg, #94a3b8, #0f172a);
+  background: linear-gradient(90deg, #71717a, #000000);
 }
 
 .t-max {
   font-size: 13px;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
   width: 28px;
 }
 
@@ -1075,7 +1130,15 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .diag-icon {
-  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diag-icon-svg {
+  width: 17px;
+  height: 17px;
+  color: #000000;
 }
 
 .diag-body {
@@ -1093,7 +1156,7 @@ body.mode-2020 .sky-ambient-glow {
 .big-num {
   font-size: 26px;
   font-weight: 800;
-  color: #0f172a;
+  color: #000000;
   line-height: 1;
 }
 
@@ -1106,7 +1169,7 @@ body.mode-2020 .sky-ambient-glow {
 .big-num-sm {
   font-size: 20px;
   font-weight: 800;
-  color: #0f172a;
+  color: #000000;
 }
 
 .big-num-sm small {
@@ -1120,14 +1183,14 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   padding: 2px 8px;
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.06);
-  color: #0f172a;
-  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(0, 0, 0, 0.06);
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .color-track-bar {
   height: 5px;
-  background: rgba(15, 23, 42, 0.06);
+  background: rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -1135,7 +1198,7 @@ body.mode-2020 .sky-ambient-glow {
 .color-track-fill {
   height: 100%;
   border-radius: 10px;
-  background: linear-gradient(90deg, #94a3b8, #0f172a);
+  background: linear-gradient(90deg, #71717a, #000000);
   transition: width 0.4s ease;
 }
 
@@ -1169,8 +1232,8 @@ body.mode-2020 .sky-ambient-glow {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 1px solid rgba(15, 23, 42, 0.15);
-  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1179,7 +1242,7 @@ body.mode-2020 .sky-ambient-glow {
   color: var(--text-dim);
 }
 
-.comp-n { position: absolute; top: 2px; color: #0f172a; }
+.comp-n { position: absolute; top: 2px; color: #000000; }
 .comp-s { position: absolute; bottom: 2px; }
 .comp-e { position: absolute; right: 3px; }
 .comp-w { position: absolute; left: 3px; }
@@ -1187,7 +1250,7 @@ body.mode-2020 .sky-ambient-glow {
 .compass-pointer-arrow {
   width: 2px;
   height: 38px;
-  background: linear-gradient(180deg, #0f172a 50%, #94a3b8 50%);
+  background: linear-gradient(180deg, #000000 50%, #71717a 50%);
   border-radius: 2px;
   transform: rotate(45deg);
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1216,12 +1279,12 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .solar-path-svg path {
-  stroke: rgba(15, 23, 42, 0.15);
+  stroke: rgba(0, 0, 0, 0.15);
 }
 
 #sun-orb {
-  fill: #0f172a;
-  filter: drop-shadow(0 0 6px rgba(15, 23, 42, 0.4));
+  fill: #000000;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.3));
 }
 
 .sun-times-row {
@@ -1237,7 +1300,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .sun-times-row strong {
   font-size: 12.5px;
-  color: #0f172a;
+  color: #000000;
 }
 
 /* Moon Phase */
@@ -1248,7 +1311,12 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .moon-large-glyph {
-  font-size: 34px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
   flex-shrink: 0;
 }
 
@@ -1259,7 +1327,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .moon-title-text {
   font-size: 13.5px;
-  color: #0f172a;
+  color: #000000;
 }
 
 .humidity-details {
@@ -1271,7 +1339,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .badge-sub {
-  color: #0f172a;
+  color: #000000;
   font-weight: 700;
 }
 
@@ -1295,13 +1363,19 @@ body.mode-2020 .sky-ambient-glow {
   gap: 12px;
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  background: rgba(15, 23, 42, 0.025);
+  background: rgba(0, 0, 0, 0.025);
   border: 1px solid var(--border-subtle);
 }
 
 .lifestyle-icon {
-  font-size: 18px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
   margin-top: 1px;
+  flex-shrink: 0;
 }
 
 .lifestyle-text-wrap {
@@ -1315,7 +1389,7 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  color: #0f172a;
+  color: #000000;
 }
 
 .lifestyle-msg {
@@ -1338,7 +1412,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .leaflet-container {
-  background: #f8fafc !important;
+  background: #ffffff !important;
   font-family: var(--font-main) !important;
 }
 
@@ -1363,7 +1437,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .app-footer-2026 a:hover {
-  color: #0f172a;
+  color: #000000;
 }
 
 .footer-col-right {
@@ -1374,11 +1448,11 @@ body.mode-2020 .sky-ambient-glow {
 
 .sec-badge {
   padding: 2px 7px;
-  background: rgba(15, 23, 42, 0.06);
+  background: rgba(0, 0, 0, 0.06);
   border-radius: 6px;
   font-size: 10px;
   font-weight: 700;
-  color: #0f172a;
+  color: #000000;
 }
 
 /* ---------------------------------------------------------
