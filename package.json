@@ -1,17 +1,37 @@
 {
-  "name": "web-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "weather-app",
+  "version": "2.0.0",
+  "description": "Next-Generation & Vintage Dual-Mode Weather Platform with Real-Time Atmospheric Diagnostics",
+  "main": "src/app.js",
   "scripts": {
-    "start": "nodemon src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "weather",
+    "express",
+    "open-meteo",
+    "radar",
+    "forecast",
+    "futuristic",
+    "vintage"
+  ],
+  "author": "Feril Sunu",
+  "license": "MIT",
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "hbs": "^4.1.2",
-    "request": "^2.88.2"
+    "axios": "^1.7.9",
+    "compression": "^1.7.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "hbs": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -1,52 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Platform | 2020 Classic & 2026 NextGen</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet Map CSS for 2026 Radar Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  
+  <!-- Application Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/img/pin.png">
 </head>
 
-<body>
-    <div class="main">
+<body class="mode-2026">
+  <!-- Dynamic Background Canvas for 2026 Atmospheric Effects -->
+  <canvas id="weather-canvas" class="weather-canvas"></canvas>
 
-        {{>header}}
-
-        <div id="weather-box">
-
-            <div id="location">
-
-                <img src="./img/pin.png" alt="">
-                <p id="place">--</p>
-            </div>
-            <p id="temp">Type Your Location Below</p>
-            <img src="./img" alt="">
-        </div>
-
-
-
-
-
-        <div id="searchbox">
-            <form>
-                <input type="text" placeholder="Enter Location">
-                <input type="submit" id="submit_button">
-            </form>
-        </div>
-
-
-
-
+  <!-- Global Era & Controls Header -->
+  <div class="global-control-bar">
+    <div class="brand-badge">
+      <div class="pulse-dot"></div>
+      <span class="brand-text">FERIL SUNU <span class="brand-highlight">METEO</span></span>
     </div>
 
+    <!-- 2020 vs 2026 Mode Switcher -->
+    <div class="era-toggle-container" title="Switch between 2020 Vintage and 2026 NextGen UI">
+      <button type="button" class="era-btn" id="btn-mode-2020" data-mode="2020">
+        <span class="era-label">2020</span>
+        <span class="era-tag">Classic</span>
+      </button>
+      <button type="button" class="era-btn active" id="btn-mode-2026" data-mode="2026">
+        <span class="era-sparkle">✨</span>
+        <span class="era-label">2026</span>
+        <span class="era-tag">NextGen</span>
+      </button>
+      <div class="era-slider-pill"></div>
+    </div>
+
+    <!-- Quick Tool Controls -->
+    <div class="quick-controls">
+      <button type="button" id="btn-unit-toggle" class="control-pill" title="Toggle °C / °F">
+        <span id="unit-label">°C</span>
+      </button>
+      <button type="button" id="btn-sound-toggle" class="control-pill" title="Toggle Ambient Audio Synth">
+        <span id="sound-icon">🔈</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 1. 2020 VINTAGE MODE CONTAINER             -->
+  <!-- ========================================== -->
+  <div id="view-2020" class="view-container">
+    <div class="main-2020">
+      {{>header}}
+
+      <div id="weather-box">
+        <div id="location">
+          <img src="/img/pin.png" alt="pin" class="pin-icon">
+          <p id="place">--</p>
+        </div>
+        <p id="temp">Type Your Location Below</p>
+      </div>
+
+      <div id="searchbox">
+        <form id="form-2020">
+          <input type="text" id="input-2020" placeholder="Enter Location" autocomplete="off">
+          <input type="submit" id="submit_button" value="Search">
+        </form>
+      </div>
+    </div>
 
     {{>footer}}
-    <script src="./js/app.js"></script>
+  </div>
 
+  <!-- ========================================== -->
+  <!-- 2. 2026 NEXTGEN FUTURISTIC CONTAINER       -->
+  <!-- ========================================== -->
+  <div id="view-2026" class="view-container active">
+    <div class="container-2026">
+      
+      <!-- Top Search & Quick City Bar -->
+      <header class="header-2026">
+        <div class="search-command-box">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="input-2026" placeholder="Search city, region, coordinates (e.g. Dubai, London, Tokyo)..." autocomplete="off">
+            <button type="button" id="btn-geo-detect" class="btn-icon" title="Detect Current GPS Location">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 2 15 8 12 6 9 8 12 2"></polygon>
+                <polygon points="12 22 9 16 12 18 15 16 12 22"></polygon>
+                <polygon points="2 12 8 9 6 12 8 15 2 12"></polygon>
+                <polygon points="22 12 16 15 18 12 16 9 22 12"></polygon>
+              </svg>
+            </button>
+          </div>
 
+          <!-- Autocomplete Dropdown List -->
+          <div id="autocomplete-list" class="autocomplete-dropdown"></div>
+        </div>
+
+        <!-- Quick Favorite Cities Chips -->
+        <div class="quick-cities-deck">
+          <span class="quick-label">POPULAR:</span>
+          <button type="button" class="city-chip" data-city="Dubai">🇦🇪 Dubai</button>
+          <button type="button" class="city-chip" data-city="London">🇬🇧 London</button>
+          <button type="button" class="city-chip" data-city="Tokyo">🇯🇵 Tokyo</button>
+          <button type="button" class="city-chip" data-city="New York">🇺🇸 New York</button>
+          <button type="button" class="city-chip" data-city="Singapore">🇸🇬 Singapore</button>
+          <button type="button" class="city-chip" data-city="Paris">🇫🇷 Paris</button>
+          <button type="button" class="city-chip" data-city="Zurich">🇨🇭 Zurich</button>
+        </div>
+      </header>
+
+      <!-- Main Weather Hub Grid -->
+      <main class="dashboard-grid">
+
+        <!-- Left Column: Hero Overview & Hourly Stream -->
+        <section class="dash-column-left">
+          
+          <!-- Hero Weather Card -->
+          <div class="glass-card hero-card" id="hero-card">
+            <div class="hero-top-meta">
+              <div class="location-group">
+                <div class="city-headline">
+                  <h2 id="hero-city">Loading Weather...</h2>
+                  <span id="hero-flag" class="country-flag-badge">🌐</span>
+                </div>
+                <div class="sub-meta">
+                  <span id="hero-local-time">--:-- --</span>
+                  <span class="meta-sep">•</span>
+                  <span id="hero-coords">--°N, --°E</span>
+                </div>
+              </div>
+
+              <div class="telemetry-badge" id="telemetry-status">
+                <span class="telemetry-dot"></span>
+                <span>REAL-TIME</span>
+              </div>
+            </div>
+
+            <div class="hero-center-display">
+              <div class="weather-glyph-wrapper" id="hero-glyph-box">
+                <div class="glyph-sun"></div>
+              </div>
+              <div class="temp-readout-group">
+                <div class="huge-temp">
+                  <span id="hero-temp">--</span><span class="unit-superscript">°C</span>
+                </div>
+                <div class="condition-phrase" id="hero-condition">Checking atmospheric stream...</div>
+              </div>
+            </div>
+
+            <div class="hero-bottom-ribbon">
+              <div class="ribbon-metric">
+                <span class="ribbon-label">FEELS LIKE</span>
+                <span class="ribbon-value" id="hero-feels-like">--°</span>
+              </div>
+              <div class="ribbon-metric">
+                <span class="ribbon-label">RANGE</span>
+                <span class="ribbon-value" id="hero-min-max">--° / --°</span>
+              </div>
+              <div class="ribbon-metric">
+                <span class="ribbon-label">CLOUD COVER</span>
+                <span class="ribbon-value" id="hero-cloud-cover">--%</span>
+              </div>
+              <div class="ribbon-metric">
+                <span class="ribbon-label">BAROMETER</span>
+                <span class="ribbon-value" id="hero-pressure">-- hPa</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 24-Hour Timeline & Trend Chart -->
+          <div class="glass-card hourly-card">
+            <div class="card-header">
+              <div class="header-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <h3>24-Hour Forecast & Temperature Trajectory</h3>
+              </div>
+              <span class="card-badge">HOURLY DELTA</span>
+            </div>
+
+            <div class="hourly-scroll-container" id="hourly-deck">
+              <!-- Hourly Cards Injected by JS -->
+            </div>
+          </div>
+
+          <!-- 7-to-10-Day Extended Daily Forecast -->
+          <div class="glass-card daily-card">
+            <div class="card-header">
+              <div class="header-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <h3>7-Day Extended Meteorological Outlook</h3>
+              </div>
+              <span class="card-badge">PROBABILISTIC</span>
+            </div>
+
+            <div class="daily-forecast-list" id="daily-deck">
+              <!-- Daily Rows Injected by JS -->
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Right Column: Multi-Metric Matrix & Radar Map -->
+        <section class="dash-column-right">
+
+          <!-- 8 Diagnostics Glass Grid -->
+          <div class="diagnostics-grid">
+            
+            <!-- 1. Air Quality Card -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">AIR QUALITY (AQI)</span>
+                <span class="metric-icon">🍃</span>
+              </div>
+              <div class="metric-body">
+                <div class="aqi-score-box">
+                  <span class="aqi-number" id="aqi-value">--</span>
+                  <span class="aqi-label" id="aqi-category">Good</span>
+                </div>
+                <div class="aqi-meter-bar">
+                  <div class="aqi-meter-fill" id="aqi-bar-fill"></div>
+                </div>
+                <div class="aqi-breakdown">
+                  <span id="aqi-pm25">PM2.5: -- µg/m³</span>
+                  <span id="aqi-pm10">PM10: -- µg/m³</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. UV Radiation Card -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">UV INDEX</span>
+                <span class="metric-icon">☀️</span>
+              </div>
+              <div class="metric-body">
+                <div class="uv-score-box">
+                  <span class="uv-number" id="uv-value">--</span>
+                  <span class="uv-label" id="uv-category">Moderate</span>
+                </div>
+                <div class="uv-meter-bar">
+                  <div class="uv-meter-fill" id="uv-bar-fill"></div>
+                </div>
+                <p class="metric-tip" id="uv-advice">Protection recommended.</p>
+              </div>
+            </div>
+
+            <!-- 3. Wind & Dynamic Compass -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">WIND TELEMETRY</span>
+                <span class="metric-icon">💨</span>
+              </div>
+              <div class="metric-body wind-body">
+                <div class="compass-widget">
+                  <div class="compass-dial">
+                    <span class="c-n">N</span>
+                    <span class="c-e">E</span>
+                    <span class="c-s">S</span>
+                    <span class="c-w">W</span>
+                    <div class="compass-needle" id="compass-needle"></div>
+                  </div>
+                </div>
+                <div class="wind-info-group">
+                  <div class="wind-speed" id="wind-speed">-- <span class="unit-sm">km/h</span></div>
+                  <div class="wind-sub" id="wind-direction">Direction: --°</div>
+                  <div class="wind-gusts" id="wind-gusts">Gusts: -- km/h</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Moisture & Humidity -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">HUMIDITY</span>
+                <span class="metric-icon">💧</span>
+              </div>
+              <div class="metric-body">
+                <div class="humidity-number" id="humidity-value">--%</div>
+                <div class="humidity-meta">
+                  <span>Dew point: <strong id="dew-point-val">--°</strong></span>
+                  <span id="humidity-comfort">Comfortable</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. Solar Arc (Sunrise / Sunset) -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">SOLAR CYCLE</span>
+                <span class="metric-icon">🌅</span>
+              </div>
+              <div class="metric-body solar-body">
+                <div class="solar-arc-widget">
+                  <svg viewBox="0 0 100 50" class="solar-svg">
+                    <path d="M 10,45 A 40,40 0 0,1 90,45" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-dasharray="2,2" />
+                    <circle id="sun-orb" cx="50" cy="15" r="4" fill="#fbbf24" filter="drop-shadow(0 0 6px #fbbf24)" />
+                  </svg>
+                </div>
+                <div class="solar-times">
+                  <div>
+                    <span class="s-label">Sunrise</span>
+                    <span class="s-time" id="sunrise-time">--:--</span>
+                  </div>
+                  <div>
+                    <span class="s-label">Sunset</span>
+                    <span class="s-time" id="sunset-time">--:--</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Lunar Phase -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">MOON PHASE</span>
+                <span class="metric-icon">🌙</span>
+              </div>
+              <div class="metric-body moon-body">
+                <div class="moon-glyph" id="moon-glyph">🌕</div>
+                <div class="moon-meta">
+                  <span class="moon-name" id="moon-name">Full Moon</span>
+                  <span class="moon-illum" id="moon-illum">--% Illumination</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. Precipitation & Rain -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">PRECIPITATION</span>
+                <span class="metric-icon">🌧️</span>
+              </div>
+              <div class="metric-body">
+                <div class="precip-number" id="precip-val">0.0 <span class="unit-sm">mm</span></div>
+                <p class="metric-tip" id="precip-prob">0% chance today</p>
+              </div>
+            </div>
+
+            <!-- 8. Atmospheric Pressure -->
+            <div class="glass-card metric-card">
+              <div class="metric-head">
+                <span class="metric-title">PRESSURE</span>
+                <span class="metric-icon">🧭</span>
+              </div>
+              <div class="metric-body">
+                <div class="pressure-number" id="pressure-val">1013 <span class="unit-sm">hPa</span></div>
+                <span class="pressure-trend" id="pressure-trend">Steady</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Lifestyle & Activity Intelligence Briefing -->
+          <div class="glass-card insights-card">
+            <div class="card-header">
+              <div class="header-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <h3>Smart Lifestyle & Atmospheric Briefing</h3>
+              </div>
+              <span class="card-badge">AI INSIGHTS</span>
+            </div>
+            <div class="insights-deck" id="insights-deck">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+
+          <!-- Interactive Radar & Satellite Preview Map -->
+          <div class="glass-card radar-map-card">
+            <div class="card-header">
+              <div class="header-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                <h3>Interactive Precipitation & Geo-Radar</h3>
+              </div>
+              <span class="card-badge">LEAFLET RADAR</span>
+            </div>
+            <div id="radar-map" class="radar-map-view"></div>
+          </div>
+
+        </section>
+
+      </main>
+
+      <!-- 2026 NextGen Footer -->
+      <footer class="footer-2026">
+        <div class="footer-left">
+          <p>© 2026 <a href="https://ferilsunu.com" target="_blank" rel="noopener">Feril Sunu</a>. Atmospheric telemetry powered by high-resolution Open-Meteo ensembles.</p>
+        </div>
+        <div class="footer-right">
+          <a href="https://github.com/ferilsunu/weather-app" target="_blank" rel="noopener" class="footer-link">GitHub Repository</a>
+          <span class="footer-dot">•</span>
+          <a href="https://ferilsunu.com" target="_blank" rel="noopener" class="footer-link">Portfolio</a>
+          <span class="footer-dot">•</span>
+          <span class="engine-tag">Engine v2.0-Secure</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Main Frontend Application Logic -->
+  <script src="/js/app.js"></script>
 </body>
-
 </html>
