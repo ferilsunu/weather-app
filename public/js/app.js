@@ -1,13 +1,13 @@
 /**
- * ATMOSPHERE WEATHER PLATFORM - JAVASCRIPT CONTROLLER v2.1
- * Mobile-First, Dual-Mode (2020 / 2026), VisionOS Architecture
+ * ATMOSPHERE WEATHER PLATFORM - JAVASCRIPT CONTROLLER v2.2
+ * Monochrome Edition (Black & White Luxury Minimalist)
  * Author: Feril Sunu
  */
 
 (function () {
   'use strict';
 
-  // Global Application State
+  // Global State
   const state = {
     currentMode: localStorage.getItem('weather_app_mode') || '2026',
     unit: localStorage.getItem('weather_app_unit') || 'C',
@@ -38,7 +38,6 @@
     snowflake: '❄️'
   };
 
-  // Helper: Country code to Emoji Flag
   function getFlagEmoji(countryCode) {
     if (!countryCode || countryCode.length !== 2) return '🌐';
     const codePoints = countryCode
@@ -48,7 +47,6 @@
     return String.fromCodePoint(...codePoints);
   }
 
-  // Helper: Unit formatting
   function formatTemp(celsius) {
     if (celsius === undefined || celsius === null || isNaN(celsius)) return '--';
     if (state.unit === 'F') {
@@ -96,32 +94,16 @@
       view2020.classList.add('active');
       view2026.classList.remove('active');
     } else {
+      document.body.className = 'mode-2026';
       btnMode2026.classList.add('active');
       btnMode2020.classList.remove('active');
       view2026.classList.add('active');
       view2020.classList.remove('active');
-      applySkyTheme();
       if (state.leafletMap) {
         setTimeout(() => state.leafletMap.invalidateSize(), 300);
       }
     }
     updateEraPill(mode);
-  }
-
-  function applySkyTheme() {
-    if (state.currentMode === '2020') return;
-    const cat = state.currentWeatherData?.current?.category || 'clear';
-    const isDay = state.currentWeatherData?.current?.is_day ?? 1;
-
-    let themeName = 'theme-clear-day';
-    if (!isDay && cat === 'clear') themeName = 'theme-clear-night';
-    else if (cat === 'clouds') themeName = 'theme-clouds';
-    else if (cat === 'rain') themeName = 'theme-rain';
-    else if (cat === 'thunderstorm') themeName = 'theme-thunderstorm';
-    else if (cat === 'snow') themeName = 'theme-snow';
-    else if (cat === 'fog') themeName = 'theme-fog';
-
-    document.body.className = `mode-2026 ${themeName}`;
   }
 
   btnMode2020.addEventListener('click', () => setMode('2020'));
@@ -215,7 +197,7 @@
             }
           })
           .catch(() => autocompleteList.classList.remove('show'));
-      }, 250);
+      }, 200);
     });
 
     autocompleteList.addEventListener('click', (e) => {
@@ -249,7 +231,7 @@
     });
   }
 
-  // Quick City Filter Buttons
+  // Quick City Filters
   quickCities.forEach(pill => {
     pill.addEventListener('click', () => {
       const city = pill.getAttribute('data-city');
@@ -258,7 +240,7 @@
     });
   });
 
-  // Geolocation Button
+  // GPS Geolocation
   if (btnGeoDetect) {
     btnGeoDetect.addEventListener('click', () => {
       if (!navigator.geolocation) {
@@ -296,7 +278,6 @@
         if (data.data) {
           state.currentWeatherData = data.data;
           render2026Dashboard(data.data);
-          applySkyTheme();
         }
         if (place2020) place2020.textContent = `${data.Place}, ${data.Country}`;
         if (temp2020) temp2020.innerHTML = `${data.Temperature}<sup>°</sup>`;
@@ -313,7 +294,6 @@
         if (res.data) {
           state.currentWeatherData = res.data;
           render2026Dashboard(res.data);
-          applySkyTheme();
           if (place2020) place2020.textContent = `${res.data.place}, ${res.data.country}`;
           if (temp2020) temp2020.innerHTML = `${res.data.current.temperature}<sup>°</sup>`;
         }
@@ -330,7 +310,6 @@
         if (res.data) {
           state.currentWeatherData = res.data;
           render2026Dashboard(res.data);
-          applySkyTheme();
           if (input2026) input2026.value = `${res.data.place}, ${res.data.country}`;
           if (place2020) place2020.textContent = `${res.data.place}, ${res.data.country}`;
           if (temp2020) temp2020.innerHTML = `${res.data.current.temperature}<sup>°</sup>`;
@@ -401,7 +380,7 @@
       heroUvStat.textContent = `${uv} ${uvLabel}`;
     }
 
-    // 2. Hourly Forecast Slider
+    // 2. Hourly Slider
     const hourlyDeck = document.getElementById('hourly-deck');
     if (hourlyDeck && data.hourly) {
       hourlyDeck.innerHTML = data.hourly.slice(0, 24).map((h, i) => {
@@ -465,15 +444,11 @@
       const aqi = data.air_quality.us_aqi;
       aqiVal.textContent = aqi;
       let cat = 'Good';
-      let badgeClass = 'good';
-      if (aqi > 150) { cat = 'Unhealthy'; badgeClass = 'unhealthy'; }
-      else if (aqi > 100) { cat = 'Sensitive'; badgeClass = 'mod'; }
-      else if (aqi > 50) { cat = 'Moderate'; badgeClass = 'mod'; }
+      if (aqi > 150) cat = 'Unhealthy';
+      else if (aqi > 100) cat = 'Sensitive';
+      else if (aqi > 50) cat = 'Moderate';
 
-      if (aqiCat) {
-        aqiCat.textContent = cat;
-        aqiCat.className = `aqi-badge ${badgeClass}`;
-      }
+      if (aqiCat) aqiCat.textContent = cat;
       if (aqiBarFill) aqiBarFill.style.width = `${Math.min(100, (aqi / 250) * 100)}%`;
       if (aqiPm25) aqiPm25.textContent = `PM2.5: ${data.air_quality.pm2_5} µg/m³`;
       if (aqiPm10) aqiPm10.textContent = `PM10: ${data.air_quality.pm10} µg/m³`;
@@ -488,16 +463,12 @@
       const uv = cur.uv_index;
       uvVal.textContent = uv;
       let label = 'Low';
-      let badgeClass = 'good';
       let advice = 'No protection required.';
-      if (uv >= 8) { label = 'Very High'; badgeClass = 'unhealthy'; advice = 'Avoid noon sun, wear SPF 50+.'; }
-      else if (uv >= 6) { label = 'High'; badgeClass = 'mod'; advice = 'Sunscreen, hat, and shades needed.'; }
-      else if (uv >= 3) { label = 'Moderate'; badgeClass = 'mod'; advice = 'Sun protection advised.'; }
+      if (uv >= 8) { label = 'Very High'; advice = 'Avoid noon sun, wear SPF 50+.'; }
+      else if (uv >= 6) { label = 'High'; advice = 'Sunscreen, hat, and shades needed.'; }
+      else if (uv >= 3) { label = 'Moderate'; advice = 'Sun protection advised.'; }
 
-      if (uvCat) {
-        uvCat.textContent = label;
-        uvCat.className = `aqi-badge ${badgeClass}`;
-      }
+      if (uvCat) uvCat.textContent = label;
       if (uvAdvice) uvAdvice.textContent = advice;
       if (uvBarFill) uvBarFill.style.width = `${Math.min(100, (uv / 11) * 100)}%`;
     }
@@ -584,7 +555,7 @@
     if (pressureVal) {
       pressureVal.innerHTML = `${cur.pressure_msl} <small>hPa</small>`;
       if (pressureTrend) {
-        pressureTrend.textContent = cur.pressure_msl > 1015 ? 'High Pressure • Clear' : cur.pressure_msl < 1005 ? 'Low Pressure • Unstable' : 'Steady Barometer';
+        pressureTrend.textContent = cur.pressure_msl > 1015 ? 'High Pressure • Stable' : cur.pressure_msl < 1005 ? 'Low Pressure • Unstable' : 'Steady Barometer';
       }
     }
 
@@ -595,22 +566,22 @@
         <div class="lifestyle-item">
           <span class="lifestyle-icon">⚡</span>
           <div class="lifestyle-text-wrap">
-            <span class="lifestyle-tag ${item.level}">${item.category}</span>
+            <span class="lifestyle-tag">${item.category}</span>
             <p class="lifestyle-msg">${item.message}</p>
           </div>
         </div>
       `).join('');
     }
 
-    // 5. Update Interactive Leaflet Map
+    // Update Map
     updateRadarMap(data.latitude, data.longitude, data.place);
 
-    // 6. Update Ambient Canvas Animation
+    // Update Monochrome Particle Canvas
     updateCanvasAtmosphere(cur.category, cur.is_day);
   }
 
   /* =========================================================
-     6. LEAFLET RADAR MAP ENGINE
+     6. LEAFLET RADAR MAP ENGINE (MONOCHROME TILES)
      ========================================================= */
   function updateRadarMap(lat, lon, placeName) {
     const mapEl = document.getElementById('radar-map');
@@ -639,13 +610,12 @@
   }
 
   /* =========================================================
-     7. PROCEDURAL CANVAS ATMOSPHERE
+     7. PROCEDURAL MONOCHROME PARTICLE CANVAS
      ========================================================= */
   const canvas = document.getElementById('weather-canvas');
   let ctx = canvas ? canvas.getContext('2d') : null;
   let particles = [];
   let currentTheme = 'clear';
-  let isDaytime = true;
 
   function initCanvas() {
     if (!canvas) return;
@@ -661,23 +631,22 @@
     canvas.height = window.innerHeight;
   }
 
-  function updateCanvasAtmosphere(category, isDay) {
+  function updateCanvasAtmosphere(category) {
     currentTheme = category || 'clear';
-    isDaytime = Boolean(isDay);
     createParticles();
   }
 
   function createParticles() {
     particles = [];
-    const count = currentTheme === 'rain' ? 100 : currentTheme === 'snow' ? 60 : 40;
+    const count = currentTheme === 'rain' ? 90 : currentTheme === 'snow' ? 60 : 35;
 
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * (canvas?.width || window.innerWidth),
         y: Math.random() * (canvas?.height || window.innerHeight),
-        speedX: currentTheme === 'rain' ? 1.5 : (Math.random() - 0.5) * 0.6,
-        speedY: currentTheme === 'rain' ? Math.random() * 8 + 6 : currentTheme === 'snow' ? Math.random() * 2 + 0.8 : (Math.random() - 0.5) * 0.4,
-        size: currentTheme === 'rain' ? Math.random() * 12 + 8 : currentTheme === 'snow' ? Math.random() * 3 + 1 : Math.random() * 2 + 0.5,
+        speedX: currentTheme === 'rain' ? 1.2 : (Math.random() - 0.5) * 0.5,
+        speedY: currentTheme === 'rain' ? Math.random() * 7 + 5 : currentTheme === 'snow' ? Math.random() * 2 + 0.8 : (Math.random() - 0.5) * 0.3,
+        size: currentTheme === 'rain' ? Math.random() * 10 + 6 : currentTheme === 'snow' ? Math.random() * 2.5 + 1 : Math.random() * 1.8 + 0.4,
         alpha: Math.random() * 0.6 + 0.2
       });
     }
@@ -689,8 +658,8 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (currentTheme === 'rain') {
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
-      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.lineWidth = 1.2;
       ctx.beginPath();
       for (const p of particles) {
         ctx.moveTo(p.x, p.y);
@@ -701,17 +670,17 @@
       }
       ctx.stroke();
     } else if (currentTheme === 'snow') {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
         p.y += p.speedY;
-        p.x += Math.sin(p.y * 0.02) * 0.4;
+        p.x += Math.sin(p.y * 0.02) * 0.3;
         if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
       }
     } else {
-      ctx.fillStyle = isDaytime ? 'rgba(251, 191, 36, 0.25)' : 'rgba(255, 255, 255, 0.45)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
       for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);

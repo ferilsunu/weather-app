@@ -4,29 +4,24 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" content="#0b132b">
-  <meta name="description" content="Next-Gen Weather Intelligence & Vintage 2020 Platform by Feril Sunu">
-  <title>Atmosphere • Weather Intelligence</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Obsidian Black & White Weather Platform by Feril Sunu">
+  <title>Weather • Feril Sunu</title>
 
   <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- App Styles -->
-  <link rel="stylesheet" href="/css/style.css?v=2.1.0">
-  <link rel="icon" type="image/png" href="/img/pin.png?v=2.1.0">
+  <link rel="stylesheet" href="/css/style.css?v=2.2.0">
+  <link rel="icon" type="image/png" href="/img/pin.png?v=2.2.0">
 </head>
 
-<body class="mode-2026 theme-clear-day">
+<body class="mode-2026">
   <!-- Dynamic Atmospheric Background Canvas -->
   <canvas id="weather-canvas" class="weather-canvas"></canvas>
   <div class="sky-ambient-glow"></div>
 
-  <!-- Navigation / Control Header -->
+  <!-- Sticky Luxury Header -->
   <header class="app-header">
     <div class="header-inner">
       <div class="brand-group">
@@ -34,7 +29,7 @@
           <div class="orb-core"></div>
         </div>
         <div class="brand-titles">
-          <span class="brand-name">ATMOSPHERE</span>
+          <span class="brand-name">WEATHER</span>
           <span class="brand-sub">FERIL SUNU</span>
         </div>
       </div>
@@ -46,7 +41,7 @@
           <small>VINTAGE</small>
         </button>
         <button type="button" class="era-toggle-btn active" id="btn-mode-2026" data-mode="2026">
-          <span class="sparkle-icon">✨</span>
+          <span class="sparkle-icon">✦</span>
           <span>2026</span>
           <small>NEXTGEN</small>
         </button>
@@ -97,21 +92,21 @@
   <main id="view-2026" class="view-panel active">
     <div class="nextgen-container">
 
-      <!-- Search & Quick Navigation Bar -->
+      <!-- Search & Autocomplete Section -->
       <section class="search-section">
         <div class="search-bar-glass">
           <svg class="search-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="input-2026" placeholder="Search city or location (e.g. Dubai, London, Tokyo)..." autocomplete="off" spellcheck="false">
+          <input type="text" id="input-2026" placeholder="Search city or coordinates (e.g. Dubai, London, Tokyo)..." autocomplete="off" spellcheck="false">
           <button type="button" id="btn-geo-detect" class="geo-btn" title="Use My Current GPS Location" aria-label="Locate me">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
             </svg>
           </button>
 
-          <!-- Autocomplete Dropdown List -->
+          <!-- Autocomplete Dropdown List with Top Z-Index -->
           <div id="autocomplete-list" class="autocomplete-dropdown"></div>
         </div>
 
@@ -127,14 +122,14 @@
         </div>
       </section>
 
-      <!-- Primary Weather Dashboard Layout -->
+      <!-- Primary Weather Dashboard Grid -->
       <div class="weather-dashboard-layout">
 
         <!-- Main Column (Hero, Hourly, 7-Day) -->
         <div class="layout-main">
 
           <!-- 1. Hero Atmospheric Showcase Card -->
-          <div class="apple-card hero-showcase" id="hero-card">
+          <div class="obsidian-card hero-showcase" id="hero-card">
             <div class="hero-header-row">
               <div class="hero-location-info">
                 <div class="city-flag-group">
@@ -149,7 +144,7 @@
               </div>
               <div class="live-status-pill">
                 <span class="live-dot"></span>
-                <span>LIVE TELEMETRY</span>
+                <span>TELEMETRY LIVE</span>
               </div>
             </div>
 
@@ -183,7 +178,7 @@
                 <span class="q-val" id="hero-humidity-stat">48%</span>
               </div>
               <div class="q-stat">
-                <span class="q-label">WIND</span>
+                <span class="q-label">WIND SPEED</span>
                 <span class="q-val" id="hero-wind-stat">14 km/h</span>
               </div>
               <div class="q-stat">
@@ -194,13 +189,13 @@
           </div>
 
           <!-- 2. Hourly Forecast Carousel -->
-          <div class="apple-card hourly-panel">
+          <div class="obsidian-card hourly-panel">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <span>24-HOUR HOURLY FORECAST</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>24-HOUR HOURLY TRAJECTORY</span>
               </div>
-              <span class="mini-tag">CHRONO-FEED</span>
+              <span class="mini-tag">CHRONO</span>
             </div>
             <div class="hourly-slider-track" id="hourly-deck">
               <!-- Hourly Cards dynamically injected -->
@@ -208,11 +203,11 @@
           </div>
 
           <!-- 3. 7-Day Extended Forecast -->
-          <div class="apple-card daily-panel">
+          <div class="obsidian-card daily-panel">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                <span>7-DAY EXTENDED FORECAST</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>7-DAY EXTENDED OUTLOOK</span>
               </div>
               <span class="mini-tag">ENSEMBLE</span>
             </div>
@@ -226,13 +221,13 @@
         <!-- Sidebar Column (Diagnostics Matrix, AI Briefing, Radar Map) -->
         <div class="layout-side">
 
-          <!-- Diagnostic Metrics 2x2 / 2x4 Grid -->
+          <!-- Diagnostic Metrics Grid -->
           <div class="diagnostics-mosaic">
 
             <!-- Card 1: Air Quality Index -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
-                <span class="diag-title">AIR QUALITY</span>
+                <span class="diag-title">AIR QUALITY (AQI)</span>
                 <span class="diag-icon">🍃</span>
               </div>
               <div class="diag-body">
@@ -241,7 +236,7 @@
                   <span class="aqi-badge good" id="aqi-category">Good</span>
                 </div>
                 <div class="color-track-bar">
-                  <div class="color-track-fill aqi-fill" id="aqi-bar-fill" style="width: 25%;"></div>
+                  <div class="color-track-fill" id="aqi-bar-fill" style="width: 25%;"></div>
                 </div>
                 <div class="aqi-submetrics">
                   <span id="aqi-pm25">PM2.5: 8.5 µg/m³</span>
@@ -251,9 +246,9 @@
             </div>
 
             <!-- Card 2: UV Index -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
-                <span class="diag-title">UV INDEX</span>
+                <span class="diag-title">UV RADIATION</span>
                 <span class="diag-icon">☀️</span>
               </div>
               <div class="diag-body">
@@ -262,16 +257,16 @@
                   <span class="aqi-badge mod" id="uv-category">Moderate</span>
                 </div>
                 <div class="color-track-bar">
-                  <div class="color-track-fill uv-fill" id="uv-bar-fill" style="width: 55%;"></div>
+                  <div class="color-track-fill" id="uv-bar-fill" style="width: 55%;"></div>
                 </div>
                 <p class="diag-hint" id="uv-advice">Sun protection recommended.</p>
               </div>
             </div>
 
             <!-- Card 3: Wind & Compass -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
-                <span class="diag-title">WIND & GUSTS</span>
+                <span class="diag-title">WIND TELEMETRY</span>
                 <span class="diag-icon">💨</span>
               </div>
               <div class="diag-body wind-diag-body">
@@ -293,7 +288,7 @@
             </div>
 
             <!-- Card 4: Sunrise / Sunset Solar Arc -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">SOLAR CYCLE</span>
                 <span class="diag-icon">🌅</span>
@@ -301,8 +296,8 @@
               <div class="diag-body">
                 <div class="solar-arc-box">
                   <svg viewBox="0 0 120 50" class="solar-path-svg">
-                    <path d="M 10,45 Q 60,5 110,45" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" stroke-dasharray="3,3" />
-                    <circle id="sun-orb" cx="60" cy="15" r="5" fill="#f59e0b" filter="drop-shadow(0 0 6px rgba(245,158,11,0.8))" />
+                    <path d="M 10,45 Q 60,5 110,45" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2.5" stroke-dasharray="3,3" />
+                    <circle id="sun-orb" cx="60" cy="15" r="5" fill="#ffffff" filter="drop-shadow(0 0 6px rgba(255,255,255,0.9))" />
                   </svg>
                 </div>
                 <div class="sun-times-row">
@@ -319,7 +314,7 @@
             </div>
 
             <!-- Card 5: Humidity & Dew Point -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">HUMIDITY</span>
                 <span class="diag-icon">💧</span>
@@ -334,7 +329,7 @@
             </div>
 
             <!-- Card 6: Lunar Phase -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">MOON PHASE</span>
                 <span class="diag-icon">🌙</span>
@@ -349,7 +344,7 @@
             </div>
 
             <!-- Card 7: Precipitation -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">PRECIPITATION</span>
                 <span class="diag-icon">🌧️</span>
@@ -361,7 +356,7 @@
             </div>
 
             <!-- Card 8: Pressure -->
-            <div class="apple-card diag-card">
+            <div class="obsidian-card diag-card">
               <div class="diag-header">
                 <span class="diag-title">PRESSURE</span>
                 <span class="diag-icon">🧭</span>
@@ -375,13 +370,13 @@
           </div>
 
           <!-- Smart Lifestyle AI Briefing -->
-          <div class="apple-card lifestyle-card">
+          <div class="obsidian-card lifestyle-card">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                <span>SMART LIFESTYLE BRIEFING</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <span>INTELLIGENT LIFESTYLE BRIEFING</span>
               </div>
-              <span class="mini-tag">AI ENGINE</span>
+              <span class="mini-tag">DIAGNOSTICS</span>
             </div>
             <div class="lifestyle-items-list" id="insights-deck">
               <!-- AI insights injected here -->
@@ -389,13 +384,13 @@
           </div>
 
           <!-- Interactive Radar Map Card -->
-          <div class="apple-card radar-card">
+          <div class="obsidian-card radar-card">
             <div class="card-title-row">
               <div class="title-with-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
-                <span>GEOSPATIAL RADAR & MAP</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                <span>GEOSPATIAL RADAR & SATELLITE</span>
               </div>
-              <span class="mini-tag">LIVE</span>
+              <span class="mini-tag">RADAR</span>
             </div>
             <div id="radar-map" class="radar-interactive-canvas"></div>
           </div>
@@ -404,7 +399,7 @@
 
       </div>
 
-      <!-- 2026 Modern Minimalist Footer -->
+      <!-- Footer -->
       <footer class="app-footer-2026">
         <div class="footer-col-left">
           <p>© 2026 <a href="https://ferilsunu.com" target="_blank" rel="noopener">Feril Sunu</a>. Atmospheric telemetry powered by Open-Meteo ensembles.</p>
@@ -414,7 +409,7 @@
           <span class="sep">•</span>
           <a href="https://ferilsunu.com" target="_blank" rel="noopener">Portfolio</a>
           <span class="sep">•</span>
-          <span class="sec-badge">v2.1 Mobile-First</span>
+          <span class="sec-badge">v2.2 Monochrome</span>
         </div>
       </footer>
 
@@ -425,6 +420,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <!-- App Frontend Script -->
-  <script src="/js/app.js?v=2.1.0"></script>
+  <script src="/js/app.js?v=2.2.0"></script>
 </body>
 </html>

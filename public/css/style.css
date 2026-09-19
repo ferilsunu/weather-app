@@ -1,66 +1,135 @@
 /* =========================================================
-   ATMOSPHERE WEATHER PLATFORM - DESIGN SYSTEM v2.1
-   Ultra-Polished Mobile-First & VisionOS / Apple Weather Aesthetic
+   ATMOSPHERE WEATHER - OBSIDIAN MONOCHROME (B&W) THEME
+   Fonts: Poppins (Self-Hosted Local Typography)
+   Design: Luxury Obsidian Black & White Minimalist Glassmorphism
    Author: Feril Sunu
    ========================================================= */
 
+/* ---------------------------------------------------------
+   1. LOCAL POSTL-INDEPENDENT POFFINS FONTS
+   --------------------------------------------------------- */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/Poppins-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Poppins-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Poppins-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/Poppins-ExtraBold.ttf') format('truetype');
+}
+
+/* ---------------------------------------------------------
+   2. OBSIDIAN MONOCHROME VARIABLES
+   --------------------------------------------------------- */
 :root {
-  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-main: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-vintage: 'Poppins', sans-serif;
 
-  /* VisionOS Glass Palette */
-  --bg-deep: #070d1a;
-  --sky-gradient: radial-gradient(circle at 50% -20%, #1e3a8a 0%, #0c1527 55%, #050914 100%);
-  --glass-card: rgba(15, 23, 42, 0.65);
-  --glass-card-hover: rgba(22, 33, 58, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.09);
-  --glass-border-focus: rgba(56, 189, 248, 0.4);
-  --glass-inner-light: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  
-  --shadow-card: 0 16px 36px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--glass-border);
-  --shadow-glow-cyan: 0 0 30px rgba(56, 189, 248, 0.15);
-  
-  /* Modern Accents */
-  --cyan-bright: #38bdf8;
-  --blue-vivid: #3b82f6;
-  --indigo-deep: #6366f1;
-  --amber-warm: #f59e0b;
-  --emerald-fresh: #10b981;
-  --rose-vivid: #f43f5e;
-  --violet-luminous: #a855f7;
+  /* Pure Black & White Palette */
+  --bg-deep: #000000;
+  --bg-surface: #09090b;
+  --bg-elevated: #121214;
+  --bg-hover: #18181b;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --card-glass: rgba(18, 18, 20, 0.85);
+  --card-glass-hover: rgba(24, 24, 27, 0.95);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-focus: rgba(255, 255, 255, 0.35);
+  --border-highlight: rgba(255, 255, 255, 0.18);
+  --inner-bevel: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
 
-  --radius-xxl: 28px;
-  --radius-xl: 20px;
-  --radius-lg: 16px;
-  --radius-md: 12px;
-  --radius-sm: 8px;
-}
+  --text-pure: #ffffff;
+  --text-bright: #f4f4f5;
+  --text-muted: #a1a1aa;
+  --text-dim: #71717a;
+  --text-dark: #3f3f46;
 
-/* Dynamic Sky Atmospheric Themes */
-body.theme-clear-day {
-  --sky-gradient: radial-gradient(circle at 50% -10%, #0369a1 0%, #0f2b5c 50%, #050a17 100%);
-}
-body.theme-clear-night {
-  --sky-gradient: radial-gradient(circle at 50% -10%, #1e1b4b 0%, #0f172a 55%, #020617 100%);
-}
-body.theme-clouds {
-  --sky-gradient: radial-gradient(circle at 50% -10%, #334155 0%, #1e293b 50%, #090e17 100%);
-}
-body.theme-rain {
-  --sky-gradient: radial-gradient(circle at 50% -10%, #1e293b 0%, #0f172a 50%, #020617 100%);
-}
-body.theme-thunderstorm {
-  --sky-gradient: radial-gradient(circle at 50% -10%, #2e1065 0%, #170e2b 50%, #030208 100%);
-}
-body.theme-snow {
-  --sky-gradient: radial-gradient(circle at 50% -10%, #38bdf8 0%, #1e293b 50%, #080d1a 100%);
+  --accent-white: #ffffff;
+  --accent-silver: #e4e4e7;
+  --accent-zinc: #71717a;
+
+  --shadow-obsidian: 0 16px 36px -6px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--border-subtle);
+  --shadow-glow: 0 0 25px rgba(255, 255, 255, 0.1);
+
+  --radius-xxl: 24px;
+  --radius-xl: 18px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
 }
 
-/* Global Reset & Base Setup */
+/* ---------------------------------------------------------
+   3. GLOBAL CUSTOM SCROLLBARS EVERYWHERE
+   --------------------------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ---------------------------------------------------------
+   4. BASE SETUP & RESETS
+   --------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -79,17 +148,16 @@ body {
   width: 100%;
   font-family: var(--font-main);
   background-color: var(--bg-deep);
-  background-image: var(--sky-gradient);
+  background-image: radial-gradient(circle at 50% 0%, #141417 0%, #08080a 50%, #000000 100%);
   background-attachment: fixed;
   background-size: cover;
-  color: var(--text-primary);
+  color: var(--text-bright);
   line-height: 1.5;
   overflow-x: hidden;
   position: relative;
-  transition: background-image 0.8s ease;
 }
 
-/* Background Atmosphere Canvas */
+/* Canvas & Ambient Overlay */
 .weather-canvas {
   position: fixed;
   top: 0;
@@ -98,7 +166,7 @@ body {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .sky-ambient-glow {
@@ -107,25 +175,25 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  height: 60vh;
-  background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08), transparent 70%);
+  height: 50vh;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* =========================================================
-   STICKY RESPONSIVE APP HEADER
-   ========================================================= */
+/* ---------------------------------------------------------
+   5. STICKY APP HEADER
+   --------------------------------------------------------- */
 .app-header {
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
-  background: rgba(7, 13, 26, 0.78);
+  z-index: 500;
+  background: rgba(8, 8, 10, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--border-subtle);
   padding: 10px 20px;
 }
 
@@ -138,7 +206,7 @@ body {
   gap: 12px;
 }
 
-/* Brand Group */
+/* Brand */
 .brand-group {
   display: flex;
   align-items: center;
@@ -149,19 +217,18 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--cyan-bright), var(--indigo-deep));
+  background: linear-gradient(135deg, #ffffff, #52525b);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .orb-core {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 8px #ffffff;
+  background: #000000;
 }
 
 .brand-titles {
@@ -172,7 +239,7 @@ body {
 .brand-name {
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 1.8px;
+  letter-spacing: 2px;
   color: #ffffff;
   line-height: 1.1;
 }
@@ -181,16 +248,16 @@ body {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 1.2px;
-  color: var(--cyan-bright);
+  color: var(--text-muted);
 }
 
-/* Version Toggle Switch */
+/* Era Switcher */
 .era-switcher-wrap {
   position: relative;
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border-subtle);
   border-radius: 40px;
   padding: 3px;
   gap: 2px;
@@ -205,7 +272,7 @@ body {
   padding: 6px 14px;
   border: none;
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font-family: var(--font-main);
   font-size: 12px;
   font-weight: 700;
@@ -218,15 +285,14 @@ body {
   font-size: 9px;
   font-weight: 600;
   opacity: 0.7;
-  letter-spacing: 0.5px;
 }
 
 .era-toggle-btn.active {
-  color: #ffffff;
+  color: #000000;
 }
 
 .sparkle-icon {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .era-active-pill {
@@ -234,13 +300,13 @@ body {
   top: 3px;
   bottom: 3px;
   border-radius: 30px;
-  background: linear-gradient(135deg, var(--blue-vivid), var(--cyan-bright));
-  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.4);
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 1;
 }
 
-/* Right Header Actions */
+/* Action Controls */
 .header-actions {
   display: flex;
   align-items: center;
@@ -248,9 +314,9 @@ body {
 }
 
 .glass-btn {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid var(--glass-border);
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-bright);
   font-family: var(--font-main);
   font-weight: 700;
   border-radius: 20px;
@@ -264,7 +330,7 @@ body {
 
 .glass-btn:hover {
   background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
 
@@ -278,7 +344,7 @@ body {
   font-size: 14px;
 }
 
-/* View Panel Toggle */
+/* Panel transitions */
 .view-panel {
   display: none;
   position: relative;
@@ -292,13 +358,13 @@ body {
   opacity: 1;
 }
 
-/* =========================================================
-   2020 VINTAGE MODE CONTAINER (PRESERVED & RESPONSIVE)
-   ========================================================= */
+/* ---------------------------------------------------------
+   6. 2020 VINTAGE MODE CONTAINER
+   --------------------------------------------------------- */
 body.mode-2020 {
   background-color: #ffffff;
   background-image: none;
-  color: #333333;
+  color: #111111;
 }
 
 body.mode-2020 .weather-canvas,
@@ -321,7 +387,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .header-2020 h1 {
-  color: #333333;
+  color: #111111;
   font-family: var(--font-vintage);
   font-size: clamp(28px, 6vw, 36px);
   font-weight: 600;
@@ -330,14 +396,14 @@ body.mode-2020 .sky-ambient-glow {
 
 .nav-links-2020 a {
   font-family: var(--font-vintage);
-  color: dimgrey;
+  color: #555555;
   text-decoration: none;
   margin: 0 6px;
   font-size: 15px;
 }
 
 #weather-box {
-  background-color: #03071e;
+  background-color: #000000;
   width: 100%;
   max-width: 580px;
   min-height: 240px;
@@ -345,7 +411,7 @@ body.mode-2020 .sky-ambient-glow {
   border-radius: 17px;
   text-align: center;
   padding: 24px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -397,7 +463,7 @@ body.mode-2020 .sky-ambient-glow {
 #searchbox input[type="text"] {
   width: 100%;
   outline: none;
-  border: 2px solid #333;
+  border: 2px solid #222222;
   border-radius: 17px;
   height: 44px;
   text-align: center;
@@ -406,7 +472,7 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 #searchbox input[type="submit"] {
-  background-color: #03071e;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 17px;
@@ -423,38 +489,37 @@ body.mode-2020 .sky-ambient-glow {
   border-top: 1px solid #ccc;
   text-align: center;
   padding: 16px 0;
-  color: #666;
+  color: #555;
   margin-top: auto;
 }
 
-/* =========================================================
-   2026 NEXTGEN CONTAINER & APPLE WEATHER CARDS
-   ========================================================= */
+/* ---------------------------------------------------------
+   7. 2026 NEXTGEN OBSIDIAN MONOCHROME DASHBOARD
+   --------------------------------------------------------- */
 .nextgen-container {
   max-width: 1380px;
   margin: 0 auto;
   padding: 18px 20px 60px 20px;
 }
 
-/* Reusable VisionOS Glass Card */
-.apple-card {
-  background: var(--glass-card);
+/* Obsidian Glass Card */
+.obsidian-card {
+  background: var(--card-glass);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-card), var(--glass-inner-light);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-obsidian), var(--inner-bevel);
   border-radius: var(--radius-xxl);
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   overflow: hidden;
   position: relative;
 }
 
-.apple-card:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: var(--shadow-card), var(--shadow-glow-cyan);
+.obsidian-card:hover {
+  border-color: var(--border-highlight);
+  box-shadow: var(--shadow-obsidian), var(--shadow-glow);
 }
 
-/* Card Title Common Row */
 .card-title-row {
   display: flex;
   align-items: center;
@@ -467,14 +532,14 @@ body.mode-2020 .sky-ambient-glow {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 1px;
 }
 
 .title-with-icon svg {
-  color: var(--cyan-bright);
+  color: #ffffff;
 }
 
 .mini-tag {
@@ -482,13 +547,18 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.8px;
   padding: 2px 7px;
-  background: rgba(56, 189, 248, 0.12);
-  color: var(--cyan-bright);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
   border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Search Section & Autocomplete */
+/* ---------------------------------------------------------
+   8. SEARCH & AUTOCOMPLETE (FIXED Z-INDEX STACKING)
+   --------------------------------------------------------- */
 .search-section {
+  position: relative;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -497,25 +567,26 @@ body.mode-2020 .sky-ambient-glow {
 
 .search-bar-glass {
   position: relative;
+  z-index: 1001;
   display: flex;
   align-items: center;
-  background: var(--glass-card);
+  background: var(--card-glass);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-inner-light);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--inner-bevel);
   border-radius: var(--radius-xl);
   padding: 6px 14px 6px 16px;
   transition: all 0.25s ease;
 }
 
 .search-bar-glass:focus-within {
-  border-color: var(--cyan-bright);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25), var(--shadow-glow-cyan);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), var(--shadow-glow);
 }
 
 .search-svg {
-  color: var(--text-muted);
+  color: var(--text-dim);
   flex-shrink: 0;
   margin-right: 12px;
 }
@@ -533,13 +604,13 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .search-bar-glass input::placeholder {
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .geo-btn {
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  color: var(--cyan-bright);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: #ffffff;
   width: 36px;
   height: 36px;
   border-radius: 12px;
@@ -552,24 +623,24 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .geo-btn:hover {
-  background: var(--cyan-bright);
-  color: #050a14;
+  background: #ffffff;
+  color: #000000;
   transform: scale(1.05);
 }
 
-/* Autocomplete Dropdown List */
+/* Autocomplete Dropdown - Highest Z-Index */
 .autocomplete-dropdown {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
   right: 0;
-  background: #0d1629;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #0d0d10;
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--radius-lg);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.85);
-  max-height: 300px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  max-height: 320px;
   overflow-y: auto;
-  z-index: 120;
+  z-index: 99999 !important;
   display: none;
 }
 
@@ -583,12 +654,12 @@ body.mode-2020 .sky-ambient-glow {
   justify-content: space-between;
   padding: 12px 18px;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   transition: background 0.15s ease;
 }
 
 .autocomplete-item:hover, .autocomplete-item.active {
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .autocomplete-main {
@@ -599,7 +670,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .autocomplete-sub {
   font-size: 12px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 /* Quick City Filter Pills */
@@ -609,18 +680,14 @@ body.mode-2020 .sky-ambient-glow {
   gap: 8px;
   overflow-x: auto;
   padding-bottom: 4px;
-  scrollbar-width: none;
+  scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
-}
-
-.city-pills-row::-webkit-scrollbar {
-  display: none;
 }
 
 .city-pill {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
-  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
   padding: 6px 14px;
   border-radius: 20px;
   font-family: var(--font-main);
@@ -633,15 +700,15 @@ body.mode-2020 .sky-ambient-glow {
 }
 
 .city-pill:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--cyan-bright);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
   color: #ffffff;
   transform: translateY(-1px);
 }
 
-/* =========================================================
-   GRID DASHBOARD LAYOUT (DESKTOP & MOBILE RESPONSIVE)
-   ========================================================= */
+/* ---------------------------------------------------------
+   9. WEATHER GRID DASHBOARD
+   --------------------------------------------------------- */
 .weather-dashboard-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
@@ -656,12 +723,12 @@ body.mode-2020 .sky-ambient-glow {
   min-width: 0;
 }
 
-/* =========================================================
-   1. HERO ATMOSPHERIC SHOWCASE CARD
-   ========================================================= */
+/* ---------------------------------------------------------
+   10. HERO SHOWCASE CARD (MONOCHROME)
+   --------------------------------------------------------- */
 .hero-showcase {
   padding: 24px 28px;
-  background: linear-gradient(135deg, rgba(20, 32, 58, 0.78), rgba(11, 18, 34, 0.88));
+  background: linear-gradient(135deg, rgba(24, 24, 27, 0.9), rgba(9, 9, 11, 0.95));
 }
 
 .hero-header-row {
@@ -695,24 +762,24 @@ body.mode-2020 .sky-ambient-glow {
   gap: 8px;
   margin-top: 4px;
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .dot-sep {
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .live-status-pill {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.8px;
   padding: 5px 12px;
-  background: rgba(16, 185, 129, 0.14);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: var(--emerald-fresh);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
   border-radius: 20px;
   flex-shrink: 0;
 }
@@ -721,8 +788,8 @@ body.mode-2020 .sky-ambient-glow {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--emerald-fresh);
-  box-shadow: 0 0 8px var(--emerald-fresh);
+  background: #ffffff;
+  box-shadow: 0 0 8px #ffffff;
   animation: pulse-dot 1.8s infinite;
 }
 
@@ -749,7 +816,7 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: -3px;
   line-height: 0.95;
-  background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
+  background: linear-gradient(180deg, #ffffff 40%, #a1a1aa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: flex;
@@ -758,20 +825,20 @@ body.mode-2020 .sky-ambient-glow {
 
 .degree-mark {
   font-size: 0.45em;
-  -webkit-text-fill-color: var(--cyan-bright);
+  -webkit-text-fill-color: #ffffff;
   margin-left: 2px;
 }
 
 .hero-condition-desc {
   font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 700;
-  color: var(--cyan-bright);
+  color: #ffffff;
   margin-top: 6px;
 }
 
 .hero-range-desc {
   font-size: 13px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin-top: 4px;
 }
 
@@ -787,7 +854,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .weather-3d-glyph {
   font-size: clamp(60px, 8vw, 80px);
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
   animation: float-glyph 4s ease-in-out infinite;
 }
 
@@ -796,13 +863,13 @@ body.mode-2020 .sky-ambient-glow {
   50% { transform: translateY(-8px); }
 }
 
-/* Hero 4 Quick Stats */
+/* 4 Quick Stats */
 .hero-quick-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .q-stat {
@@ -815,7 +882,7 @@ body.mode-2020 .sky-ambient-glow {
   font-size: 9.5px;
   font-weight: 800;
   letter-spacing: 0.8px;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .q-val {
@@ -824,9 +891,9 @@ body.mode-2020 .sky-ambient-glow {
   color: #ffffff;
 }
 
-/* =========================================================
-   2. HOURLY FORECAST SLIDER
-   ========================================================= */
+/* ---------------------------------------------------------
+   11. HOURLY SLIDER
+   --------------------------------------------------------- */
 .hourly-panel {
   padding-bottom: 16px;
 }
@@ -835,13 +902,9 @@ body.mode-2020 .sky-ambient-glow {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  padding: 14px 20px 6px 20px;
-  scrollbar-width: none;
+  padding: 14px 20px 8px 20px;
+  scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
-}
-
-.hourly-slider-track::-webkit-scrollbar {
-  display: none;
 }
 
 .hourly-item-box {
@@ -852,22 +915,22 @@ body.mode-2020 .sky-ambient-glow {
   padding: 12px 14px;
   min-width: 76px;
   background: rgba(255, 255, 255, 0.035);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
 .hourly-item-box:hover, .hourly-item-box.now {
-  background: rgba(56, 189, 248, 0.12);
-  border-color: var(--cyan-bright);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
   transform: translateY(-2px);
 }
 
 .h-time-txt {
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .h-icon-emoji {
@@ -883,12 +946,12 @@ body.mode-2020 .sky-ambient-glow {
 .h-pop-txt {
   font-size: 10px;
   font-weight: 700;
-  color: var(--cyan-bright);
+  color: var(--text-muted);
 }
 
-/* =========================================================
-   3. 7-DAY EXTENDED OUTLOOK
-   ========================================================= */
+/* ---------------------------------------------------------
+   12. 7-DAY EXTENDED FORECAST
+   --------------------------------------------------------- */
 .daily-panel {
   padding-bottom: 8px;
 }
@@ -925,7 +988,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .day-date {
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .day-icon-emoji {
@@ -943,7 +1006,7 @@ body.mode-2020 .sky-ambient-glow {
 .t-min {
   font-size: 13px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-dim);
   width: 28px;
   text-align: right;
 }
@@ -962,7 +1025,7 @@ body.mode-2020 .sky-ambient-glow {
   top: 0;
   bottom: 0;
   border-radius: 10px;
-  background: linear-gradient(90deg, var(--cyan-bright), var(--amber-warm));
+  background: linear-gradient(90deg, #71717a, #ffffff);
 }
 
 .t-max {
@@ -975,16 +1038,16 @@ body.mode-2020 .sky-ambient-glow {
 .day-condition-phrase {
   font-size: 11.5px;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-align: right;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* =========================================================
-   DIAGNOSTICS MATRIX (SIDEBAR)
-   ========================================================= */
+/* ---------------------------------------------------------
+   13. DIAGNOSTICS MATRIX (MONOCHROME WIDGETS)
+   --------------------------------------------------------- */
 .diagnostics-mosaic {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1006,7 +1069,7 @@ body.mode-2020 .sky-ambient-glow {
   font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.8px;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .diag-icon {
@@ -1035,7 +1098,7 @@ body.mode-2020 .sky-ambient-glow {
 .big-num small {
   font-size: 12px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .big-num-sm {
@@ -1047,7 +1110,7 @@ body.mode-2020 .sky-ambient-glow {
 .big-num-sm small {
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .aqi-badge {
@@ -1055,11 +1118,10 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   padding: 2px 8px;
   border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
-
-.aqi-badge.good { background: rgba(16, 185, 129, 0.15); color: var(--emerald-fresh); }
-.aqi-badge.mod { background: rgba(245, 158, 11, 0.15); color: var(--amber-warm); }
-.aqi-badge.unhealthy { background: rgba(244, 63, 94, 0.15); color: var(--rose-vivid); }
 
 .color-track-bar {
   height: 5px;
@@ -1071,25 +1133,23 @@ body.mode-2020 .sky-ambient-glow {
 .color-track-fill {
   height: 100%;
   border-radius: 10px;
+  background: linear-gradient(90deg, #52525b, #ffffff);
   transition: width 0.4s ease;
 }
-
-.aqi-fill { background: linear-gradient(90deg, #10b981, #f59e0b, #f43f5e); }
-.uv-fill { background: linear-gradient(90deg, #10b981, #fbbf24, #ef4444); }
 
 .aqi-submetrics {
   display: flex;
   gap: 8px;
   font-size: 10.5px;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .diag-hint {
   font-size: 11.5px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
-/* Wind & Compass Widget */
+/* Wind & Compass */
 .wind-diag-body {
   flex-direction: row;
   align-items: center;
@@ -1108,16 +1168,16 @@ body.mode-2020 .sky-ambient-glow {
   height: 100%;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 8px;
   font-weight: 800;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
-.comp-n { position: absolute; top: 2px; color: var(--rose-vivid); }
+.comp-n { position: absolute; top: 2px; color: #ffffff; }
 .comp-s { position: absolute; bottom: 2px; }
 .comp-e { position: absolute; right: 3px; }
 .comp-w { position: absolute; left: 3px; }
@@ -1125,7 +1185,7 @@ body.mode-2020 .sky-ambient-glow {
 .compass-pointer-arrow {
   width: 2px;
   height: 38px;
-  background: linear-gradient(180deg, var(--rose-vivid) 50%, #ffffff 50%);
+  background: linear-gradient(180deg, #ffffff 50%, #3f3f46 50%);
   border-radius: 2px;
   transform: rotate(45deg);
   transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -1139,10 +1199,10 @@ body.mode-2020 .sky-ambient-glow {
 
 .sub-line {
   font-size: 11px;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
-/* Solar Cycle Arc */
+/* Solar Arc */
 .solar-arc-box {
   width: 100%;
   height: 34px;
@@ -1160,7 +1220,7 @@ body.mode-2020 .sky-ambient-glow {
 
 .sun-times-row .lbl {
   font-size: 9.5px;
-  color: var(--text-muted);
+  color: var(--text-dim);
   display: block;
 }
 
@@ -1169,7 +1229,7 @@ body.mode-2020 .sky-ambient-glow {
   color: #ffffff;
 }
 
-/* Moon Phase Widget */
+/* Moon Phase */
 .moon-diag-body {
   flex-direction: row;
   align-items: center;
@@ -1196,15 +1256,17 @@ body.mode-2020 .sky-ambient-glow {
   justify-content: space-between;
   align-items: center;
   font-size: 11.5px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .badge-sub {
-  color: var(--cyan-bright);
+  color: #ffffff;
   font-weight: 700;
 }
 
-/* AI Lifestyle Card */
+/* ---------------------------------------------------------
+   14. LIFESTYLE BRIEFING & RADAR
+   --------------------------------------------------------- */
 .lifestyle-card {
   padding-bottom: 12px;
 }
@@ -1223,7 +1285,7 @@ body.mode-2020 .sky-ambient-glow {
   padding: 10px 14px;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--border-subtle);
 }
 
 .lifestyle-icon {
@@ -1242,19 +1304,16 @@ body.mode-2020 .sky-ambient-glow {
   font-weight: 800;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  color: #ffffff;
 }
-
-.lifestyle-tag.safe { color: var(--emerald-fresh); }
-.lifestyle-tag.warning { color: var(--amber-warm); }
-.lifestyle-tag.danger { color: var(--rose-vivid); }
 
 .lifestyle-msg {
   font-size: 12.5px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   line-height: 1.35;
 }
 
-/* Radar Interactive Map */
+/* Radar Map */
 .radar-card {
   padding-bottom: 0;
 }
@@ -1262,38 +1321,38 @@ body.mode-2020 .sky-ambient-glow {
 .radar-interactive-canvas {
   width: 100%;
   height: 240px;
-  background: #090f1d;
+  background: #09090b;
   border-bottom-left-radius: var(--radius-xxl);
   border-bottom-right-radius: var(--radius-xxl);
 }
 
 .leaflet-container {
-  background: #070d1a !important;
+  background: #000000 !important;
   font-family: var(--font-main) !important;
 }
 
-/* =========================================================
-   FOOTER (2026)
-   ========================================================= */
+/* ---------------------------------------------------------
+   15. FOOTER (2026)
+   --------------------------------------------------------- */
 .app-footer-2026 {
   margin-top: 32px;
   padding-top: 20px;
-  border-top: 1px solid var(--glass-border);
+  border-top: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 12.5px;
-  color: var(--text-muted);
+  color: var(--text-dim);
 }
 
 .app-footer-2026 a {
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .app-footer-2026 a:hover {
-  color: var(--cyan-bright);
+  color: #ffffff;
 }
 
 .footer-col-right {
@@ -1304,16 +1363,16 @@ body.mode-2020 .sky-ambient-glow {
 
 .sec-badge {
   padding: 2px 7px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 6px;
   font-size: 10px;
   font-weight: 700;
-  color: var(--cyan-bright);
+  color: #ffffff;
 }
 
-/* =========================================================
-   MOBILE-FIRST RESPONSIVE MEDIA QUERIES
-   ========================================================= */
+/* ---------------------------------------------------------
+   16. MOBILE-FIRST RESPONSIVE MEDIA QUERIES
+   --------------------------------------------------------- */
 @media (max-width: 1080px) {
   .weather-dashboard-layout {
     grid-template-columns: 1fr;
